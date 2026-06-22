@@ -9,7 +9,8 @@ RobotArmControl::RobotArmControl(
     uint8_t r3_channel,
     uint8_t r4_channel,
     uint8_t r5_channel
-) : servoDriver(servoDriver),
+) : 
+    servoDriver(servoDriver),
     r0_channel(r0_channel),
     r1_channel(r1_channel),
     r2_channel(r2_channel),
