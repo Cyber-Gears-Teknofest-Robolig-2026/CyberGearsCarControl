@@ -11,9 +11,12 @@ ServoDriverControl::ServoDriverControl(
 }
 
 ServoDriverControl& ServoDriverControl::begin() {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     servoMotorDriver.begin();
     servoMotorDriver.setOscillatorFrequency(27000000);
     servoMotorDriver.setPWMFreq(50);
+    serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.println("ServoDriverControl begin");
     }
@@ -21,7 +24,10 @@ ServoDriverControl& ServoDriverControl::begin() {
 }
 
 ServoDriverControl& ServoDriverControl::setServoPulse(uint8_t channel, uint16_t pulse) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     servoMotorDriver.writeMicroseconds(constrain(channel, 0, 15), constrain(pulse, SERVO_PWM_MIN, SERVO_PWM_MAX));
+    serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setServoPulse: channel = ");
         Serial.print(channel);
@@ -32,7 +38,10 @@ ServoDriverControl& ServoDriverControl::setServoPulse(uint8_t channel, uint16_t 
 }
 
 ServoDriverControl& ServoDriverControl::setServo(uint8_t channel, uint8_t angle) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     servoMotorDriver.writeMicroseconds(constrain(channel, 0, 15), map(constrain(angle, 0, 180), 0, 180, SERVO_PWM_MIN, SERVO_PWM_MAX));
+    serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setServo: channel = ");
         Serial.print(channel);
