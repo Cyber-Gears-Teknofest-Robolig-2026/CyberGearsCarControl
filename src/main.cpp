@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
-#include "DCMotorPins.hpp"
-#include "DCMotorPWMInfos.hpp"
+//#include "DCMotorPins.hpp"
+//#include "DCMotorPWMInfos.hpp"
 
 #include "DCMotorControl.hpp"
 
