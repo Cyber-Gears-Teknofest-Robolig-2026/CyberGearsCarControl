@@ -5,8 +5,9 @@
 
 DCMotorControl dcmotors();
 
-void setup() {
+void setup(void) {
+    dcmotors.begin();
 }
 
-void loop() {
+void loop(void) {
 }

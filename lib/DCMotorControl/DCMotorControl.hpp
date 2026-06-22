@@ -17,6 +17,7 @@ class DCMotorControl {
             uint8_t left_motor_forward_pin = LEFT_MOTOR_FORWARD_PIN,
             uint8_t left_motor_backward_pin = LEFT_MOTOR_BACKWARD_PIN
         );
+        void begin(void);
     
     private:
         uint8_t right_motor_pwm_pin;

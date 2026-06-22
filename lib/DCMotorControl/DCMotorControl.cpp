@@ -15,3 +15,12 @@ DCMotorControl::DCMotorControl(
     this->left_motor_forward_pin = left_motor_forward_pin;
     this->left_motor_backward_pin = left_motor_backward_pin;
 }
+
+void DCMotorControl::begin(void) {
+    pinMode(right_motor_pwm_pin, OUTPUT);
+    pinMode(right_motor_forward_pin, OUTPUT);
+    pinMode(right_motor_backward_pin, OUTPUT);
+    pinMode(left_motor_pwm_pin, OUTPUT);
+    pinMode(left_motor_forward_pin, OUTPUT);
+    pinMode(left_motor_backward_pin, OUTPUT);
+}
