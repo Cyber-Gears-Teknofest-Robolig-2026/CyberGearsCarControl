@@ -1,10 +1,11 @@
 #include "ServoDriverControl.hpp"
 
 ServoDriverControl::ServoDriverControl(
-    TwoWire &i2c,
-    uint8_t i2c_addr
+    uint8_t i2c_addr,
+    TwoWire &i2c
 ) : 
+    i2c_addr(i2c_addr),
     i2c(i2c),
-    i2c_addr(i2c_addr)
+    servoMotorDriver(i2c_addr, i2c)
 {
 }

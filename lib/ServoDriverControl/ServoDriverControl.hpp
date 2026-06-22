@@ -13,13 +13,14 @@ class ServoDriverControl {
     
     public:
         ServoDriverControl(
-            TwoWire &i2c = I2C,
-            uint8_t i2c_addr = I2C_ADDR
+            uint8_t i2c_addr = I2C_ADDR,
+            TwoWire &i2c = I2C
         );
     
     private:
         TwoWire &i2c;
         uint8_t i2c_addr;
+        Adafruit_PWMServoDriver servoMotorDriver;
 };
 
 #endif
