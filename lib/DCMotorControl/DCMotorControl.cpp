@@ -40,3 +40,39 @@ void DCMotorControl::begin(void) {
     ledcAttachPin(right_motor_pwm_pin, right_motor_pwm_ch);
     ledcAttachPin(left_motor_pwm_pin, left_motor_pwm_ch);
 }
+
+void DCMotorControl::moveRightMotor(int16_t speed) {
+    if (speed > 0) {
+        ledcWrite(right_motor_pwm_ch, speed);
+        digitalWrite(right_motor_forward_pin, HIGH);
+        digitalWrite(right_motor_backward_pin, LOW);
+    } 
+    else if (speed < 0) {
+        ledcWrite(right_motor_pwm_ch, speed);
+        digitalWrite(right_motor_forward_pin, LOW);
+        digitalWrite(right_motor_backward_pin, HIGH);
+    } 
+    else {
+        ledcWrite(right_motor_pwm_ch, 0);
+        digitalWrite(right_motor_forward_pin, LOW);
+        digitalWrite(right_motor_backward_pin, LOW);
+    }
+}
+
+void DCMotorControl::moveLeftMotor(int16_t speed) {
+    if (speed > 0) {
+        ledcWrite(left_motor_pwm_ch, speed);
+        digitalWrite(left_motor_forward_pin, HIGH);
+        digitalWrite(left_motor_backward_pin, LOW);
+    } 
+    else if (speed < 0) {
+        ledcWrite(left_motor_pwm_ch, speed);
+        digitalWrite(left_motor_forward_pin, LOW);
+        digitalWrite(left_motor_backward_pin, HIGH);
+    } 
+    else {
+        ledcWrite(left_motor_pwm_ch, 0);
+        digitalWrite(left_motor_forward_pin, LOW);
+        digitalWrite(left_motor_backward_pin, LOW);
+    }
+}
