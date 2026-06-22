@@ -17,11 +17,15 @@ class ServoDriverControl {
             TwoWire &i2c = I2C
         );
         ServoDriverControl& begin();
+        ServoDriverControl& setServo(uint8_t channel, uint8_t angle);
+        ServoDriverControl& setServoPulse(uint8_t channel, uint16_t pulse);
     
     private:
         TwoWire &i2c;
         uint8_t i2c_addr;
         Adafruit_PWMServoDriver servoMotorDriver;
+        const uint16_t SERVO_PWM_MIN = 500;
+        const uint16_t SERVO_PWM_MAX = 2500;
 };
 
 #endif
