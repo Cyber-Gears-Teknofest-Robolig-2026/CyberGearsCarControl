@@ -49,3 +49,13 @@ RobotArmControl& RobotArmControl::setR5Angle(uint8_t angle) {
     servoDriver.setServo(r5_channel, angle);
     return *this;
 }
+
+RobotArmControl& RobotArmControl::setAllAngle(uint8_t r0_angle, uint8_t r1_angle, uint8_t r2_angle, uint8_t r3_angle, uint8_t r4_angle, uint8_t r5_angle) {
+    setR0Angle(r0_angle);
+    setR1Angle(r1_angle);
+    setR2Angle(r2_angle);
+    setR3Angle(r3_angle);
+    setR4Angle(r4_angle);
+    setR5Angle(r5_angle);
+    return *this;
+}

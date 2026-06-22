@@ -26,6 +26,14 @@ class RobotArmControl {
         RobotArmControl& setR3Angle(uint8_t angle);
         RobotArmControl& setR4Angle(uint8_t angle);
         RobotArmControl& setR5Angle(uint8_t angle);
+        RobotArmControl& setAllAngle(
+            uint8_t r0_angle,
+            uint8_t r1_angle,
+            uint8_t r2_angle,
+            uint8_t r3_angle,
+            uint8_t r4_angle,
+            uint8_t r5_angle
+        );
     
     private:
         ServoDriverControl &servoDriver;
