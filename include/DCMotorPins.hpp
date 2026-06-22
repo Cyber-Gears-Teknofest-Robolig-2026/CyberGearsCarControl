@@ -1,0 +1,6 @@
+#define RIGHT_MOTOR_PWM_PIN         D0
+#define RIGHT_MOTOR_FORWARD_PIN     D4
+#define RIGHT_MOTOR_BACKWARD_PIN    D5
+#define LEFT_MOTOR_PWM_PIN          D1
+#define LEFT_MOTOR_FORWARD_PIN      D6
+#define LEFT_MOTOR_BACKWARD_PIN     D7
