@@ -3,6 +3,7 @@
 
 #include <Wire.h>
 #include <cstdint>
+#include <Adafruit_PWMServoDriver.h>
 
 #include "ServoDriverI2CInfos.hpp"
 
