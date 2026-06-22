@@ -26,8 +26,10 @@ DCMotorControl::DCMotorControl(
     this->left_motor_pwm_ch = left_motor_pwm_ch;
     this->left_motor_pwm_freq = left_motor_pwm_freq;
     this->left_motor_pwm_res = left_motor_pwm_res;
-    this->right_pwm_max = (1 << right_motor_pwm_res) - 1;
-    this->left_pwm_max = (1 << left_motor_pwm_res) - 1;
+    this->RIGHT_PWM_MAX = (1 << right_motor_pwm_res) - 1;
+    this->LEFT_PWM_MAX = (1 << left_motor_pwm_res) - 1;
+    this->RIGHT_PWM_MIN = 0;
+    this->LEFT_PWM_MIN = 0;
 }
 
 void DCMotorControl::begin(void) {
@@ -41,15 +43,16 @@ void DCMotorControl::begin(void) {
     ledcSetup(left_motor_pwm_ch, left_motor_pwm_freq, left_motor_pwm_res);
     ledcAttachPin(right_motor_pwm_pin, right_motor_pwm_ch);
     ledcAttachPin(left_motor_pwm_pin, left_motor_pwm_ch);
+    stopMotors();
 }
 
 void DCMotorControl::moveRightMotor(int16_t speed) {
-    if (constrain(speed, -right_pwm_max, right_pwm_max) > 0) {
-        ledcWrite(right_motor_pwm_ch, constrain(speed, -right_pwm_max, right_pwm_max));
+    if (constrain(speed, -RIGHT_PWM_MAX, RIGHT_PWM_MAX) > 0) {
+        ledcWrite(right_motor_pwm_ch, constrain(speed, -RIGHT_PWM_MAX, RIGHT_PWM_MAX));
         digitalWrite(right_motor_forward_pin, HIGH);
         digitalWrite(right_motor_backward_pin, LOW);
     } 
-    else if (constrain(speed, -right_pwm_max, right_pwm_max) < 0) {
+    else if (constrain(speed, -RIGHT_PWM_MAX, RIGHT_PWM_MAX) < 0) {
         ledcWrite(right_motor_pwm_ch, speed);
         digitalWrite(right_motor_forward_pin, LOW);
         digitalWrite(right_motor_backward_pin, HIGH);
@@ -59,15 +62,17 @@ void DCMotorControl::moveRightMotor(int16_t speed) {
         digitalWrite(right_motor_forward_pin, LOW);
         digitalWrite(right_motor_backward_pin, LOW);
     }
+    Serial.print("moveRightMotor: speed = ");
+    Serial.println(speed);
 }
 
 void DCMotorControl::moveLeftMotor(int16_t speed) {
-    if (constrain(speed, -left_pwm_max, left_pwm_max) > 0) {
-        ledcWrite(left_motor_pwm_ch, constrain(speed, -left_pwm_max, left_pwm_max));
+    if (constrain(speed, -LEFT_PWM_MAX, LEFT_PWM_MAX) > 0) {
+        ledcWrite(left_motor_pwm_ch, constrain(speed, -LEFT_PWM_MAX, LEFT_PWM_MAX));
         digitalWrite(left_motor_forward_pin, HIGH);
         digitalWrite(left_motor_backward_pin, LOW);
     } 
-    else if (constrain(speed, -left_pwm_max, left_pwm_max) < 0) {
+    else if (constrain(speed, -LEFT_PWM_MAX, LEFT_PWM_MAX) < 0) {
         ledcWrite(left_motor_pwm_ch, speed);
         digitalWrite(left_motor_forward_pin, LOW);
         digitalWrite(left_motor_backward_pin, HIGH);
@@ -77,9 +82,52 @@ void DCMotorControl::moveLeftMotor(int16_t speed) {
         digitalWrite(left_motor_forward_pin, LOW);
         digitalWrite(left_motor_backward_pin, LOW);
     }
+    Serial.print("moveLeftMotor: speed = ");
+    Serial.println(speed);
 }
 
 void DCMotorControl::moveMotors(int16_t left_speed, int16_t right_speed) {
     moveLeftMotor(left_speed);
     moveRightMotor(right_speed);
+    Serial.print("moveMotors: leftSpeed = ");
+    Serial.print(left_speed);
+    Serial.print(", rightSpeed = ");
+    Serial.println(right_speed);
+}
+
+void DCMotorControl::stopMotors(void) {
+    moveMotors(0, 0);
+    Serial.println("stopMotors: leftSpeed = 0, rightSpeed = 0");
+}
+
+void DCMotorControl::moveForward(int16_t left_speed, int16_t right_speed) {
+    moveMotors(left_speed, right_speed);
+    Serial.print("moveForward: leftSpeed = ");
+    Serial.print(left_speed);
+    Serial.print(", rightSpeed = ");
+    Serial.println(right_speed);
+}
+
+void DCMotorControl::moveBackward(int16_t left_speed, int16_t right_speed) {
+    moveMotors(-left_speed, -right_speed);
+    Serial.print("moveBackward: leftSpeed = ");
+    Serial.print(-left_speed);
+    Serial.print(", rightSpeed = ");
+    Serial.println(-right_speed);
+}
+
+void DCMotorControl::turnRight(int16_t left_speed, int16_t right_speed) {
+    moveMotors(left_speed, -right_speed);
+    Serial.print("turnRight: leftSpeed = ");
+    Serial.print(left_speed);
+    Serial.print(", rightSpeed = ");
+    Serial.println(-right_speed);
+}
+
+void DCMotorControl::turnLeft(int16_t left_speed, int16_t right_speed) {
+    moveMotors(-left_speed, right_speed);
+    Serial.print("turnLeft: leftSpeed = ");
+    Serial.print(-left_speed);
+    Serial.print(", rightSpeed = ");
+    Serial.println(right_speed);
 }

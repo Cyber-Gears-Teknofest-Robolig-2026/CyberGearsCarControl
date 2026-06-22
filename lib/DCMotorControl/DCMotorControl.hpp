@@ -31,6 +31,15 @@ class DCMotorControl {
         void moveRightMotor(int16_t speed);
         void moveLeftMotor(int16_t speed);
         void moveMotors(int16_t left_speed, int16_t right_speed);
+        void stopMotors(void);
+        void moveForward(int16_t left_speed, int16_t right_speed);
+        void moveBackward(int16_t left_speed, int16_t right_speed);
+        void turnRight(int16_t left_speed, int16_t right_speed);
+        void turnLeft(int16_t left_speed, int16_t right_speed);
+        uint16_t RIGHT_PWM_MIN = 0;
+        uint16_t LEFT_PWM_MIN = 0;
+        uint16_t RIGHT_PWM_MAX;
+        uint16_t LEFT_PWM_MAX;
     
     private:
         uint8_t right_motor_pwm_pin;
@@ -45,8 +54,6 @@ class DCMotorControl {
         uint8_t left_motor_pwm_ch;
         uint16_t left_motor_pwm_freq;
         uint8_t left_motor_pwm_res;
-        uint16_t right_pwm_max;
-        uint16_t left_pwm_max;
 };
 
 #endif
