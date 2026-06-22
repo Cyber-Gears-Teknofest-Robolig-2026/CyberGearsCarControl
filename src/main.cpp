@@ -11,7 +11,7 @@ DCMotorControl dcmotors;
 
 void setup(void) {
     Serial.begin(115200);
-    dcmotors.begin();
+    dcmotors.begin().setSerialPrintEnable(true);
 }
 
 void loop(void) {

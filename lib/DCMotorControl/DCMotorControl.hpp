@@ -27,16 +27,16 @@ class DCMotorControl {
             uint16_t left_motor_pwm_freq = LEFT_MOTOR_PWM_FREQ,
             uint8_t left_motor_pwm_res = LEFT_MOTOR_PWM_RES
         );
-        void begin(void);
-        void moveRightMotor(int16_t speed);
-        void moveLeftMotor(int16_t speed);
-        void moveMotors(int16_t left_speed, int16_t right_speed);
-        void stopMotors(void);
-        void moveForward(int16_t left_speed, int16_t right_speed);
-        void moveBackward(int16_t left_speed, int16_t right_speed);
-        void turnRight(int16_t left_speed, int16_t right_speed);
-        void turnLeft(int16_t left_speed, int16_t right_speed);
-        void setSerialPrintEnable(bool enable);
+        DCMotorControl& begin(void);
+        DCMotorControl& moveRightMotor(int16_t speed);
+        DCMotorControl& moveLeftMotor(int16_t speed);
+        DCMotorControl& moveMotors(int16_t left_speed, int16_t right_speed);
+        DCMotorControl& stopMotors(void);
+        DCMotorControl& moveForward(int16_t left_speed, int16_t right_speed);
+        DCMotorControl& moveBackward(int16_t left_speed, int16_t right_speed);
+        DCMotorControl& turnRight(int16_t left_speed, int16_t right_speed);
+        DCMotorControl& turnLeft(int16_t left_speed, int16_t right_speed);
+        DCMotorControl& setSerialPrintEnable(bool enable);
         uint16_t RIGHT_PWM_MIN = 0;
         uint16_t LEFT_PWM_MIN = 0;
         uint16_t RIGHT_PWM_MAX;

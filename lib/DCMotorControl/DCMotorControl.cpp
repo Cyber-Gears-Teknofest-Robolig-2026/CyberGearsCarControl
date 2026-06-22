@@ -25,13 +25,13 @@ DCMotorControl::DCMotorControl(
     right_motor_pwm_res(right_motor_pwm_res),
     left_motor_pwm_ch(left_motor_pwm_ch),
     left_motor_pwm_freq(left_motor_pwm_freq),
-    left_motor_pwm_res(left_motor_pwm_res) 
+    left_motor_pwm_res(left_motor_pwm_res),
+    RIGHT_PWM_MAX((1 << right_motor_pwm_res) - 1),
+    LEFT_PWM_MAX((1 << left_motor_pwm_res) - 1)
 {
-    this->RIGHT_PWM_MAX = (1 << right_motor_pwm_res) - 1;
-    this->LEFT_PWM_MAX = (1 << left_motor_pwm_res) - 1;
 }
 
-void DCMotorControl::begin(void) {
+DCMotorControl& DCMotorControl::begin(void) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     pinMode(right_motor_pwm_pin, OUTPUT);
@@ -49,9 +49,10 @@ void DCMotorControl::begin(void) {
     if (serialPrintEnable) {
         Serial.println("DCMotorControl begin");
     }
+    return *this;
 }
 
-void DCMotorControl::moveRightMotor(int16_t speed) {
+DCMotorControl& DCMotorControl::moveRightMotor(int16_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     if (constrain(speed, -RIGHT_PWM_MAX, RIGHT_PWM_MAX) > 0) {
@@ -74,9 +75,10 @@ void DCMotorControl::moveRightMotor(int16_t speed) {
         Serial.print("moveRightMotor: speed = ");
         Serial.println(speed);
     }
+    return *this;
 }
 
-void DCMotorControl::moveLeftMotor(int16_t speed) {
+DCMotorControl& DCMotorControl::moveLeftMotor(int16_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     if (constrain(speed, -LEFT_PWM_MAX, LEFT_PWM_MAX) > 0) {
@@ -99,9 +101,10 @@ void DCMotorControl::moveLeftMotor(int16_t speed) {
         Serial.print("moveLeftMotor: speed = ");
         Serial.println(speed);
     }
+    return *this;
 }
 
-void DCMotorControl::moveMotors(int16_t left_speed, int16_t right_speed) {
+DCMotorControl& DCMotorControl::moveMotors(int16_t left_speed, int16_t right_speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     moveLeftMotor(left_speed);
@@ -113,9 +116,10 @@ void DCMotorControl::moveMotors(int16_t left_speed, int16_t right_speed) {
         Serial.print(", rightSpeed = ");
         Serial.println(right_speed);
     }
+    return *this;
 }
 
-void DCMotorControl::stopMotors(void) {
+DCMotorControl& DCMotorControl::stopMotors(void) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     moveMotors(0, 0);
@@ -123,9 +127,10 @@ void DCMotorControl::stopMotors(void) {
     if (serialPrintEnable) {
         Serial.println("stopMotors: leftSpeed = 0, rightSpeed = 0");
     }
+    return *this;
 }
 
-void DCMotorControl::moveForward(int16_t left_speed, int16_t right_speed) {
+DCMotorControl& DCMotorControl::moveForward(int16_t left_speed, int16_t right_speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     moveMotors(left_speed, right_speed);
@@ -136,9 +141,10 @@ void DCMotorControl::moveForward(int16_t left_speed, int16_t right_speed) {
         Serial.print(", rightSpeed = ");
         Serial.println(right_speed);
     }
+    return *this;
 }
 
-void DCMotorControl::moveBackward(int16_t left_speed, int16_t right_speed) {
+DCMotorControl& DCMotorControl::moveBackward(int16_t left_speed, int16_t right_speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     moveMotors(-left_speed, -right_speed);
@@ -149,9 +155,10 @@ void DCMotorControl::moveBackward(int16_t left_speed, int16_t right_speed) {
         Serial.print(", rightSpeed = ");
         Serial.println(-right_speed);
     }
+    return *this;
 }
 
-void DCMotorControl::turnRight(int16_t left_speed, int16_t right_speed) {
+DCMotorControl& DCMotorControl::turnRight(int16_t left_speed, int16_t right_speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     moveMotors(left_speed, -right_speed);
@@ -162,9 +169,10 @@ void DCMotorControl::turnRight(int16_t left_speed, int16_t right_speed) {
         Serial.print(", rightSpeed = ");
         Serial.println(-right_speed);
     }
+    return *this;
 }
 
-void DCMotorControl::turnLeft(int16_t left_speed, int16_t right_speed) {
+DCMotorControl& DCMotorControl::turnLeft(int16_t left_speed, int16_t right_speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     moveMotors(-left_speed, right_speed);
@@ -175,8 +183,10 @@ void DCMotorControl::turnLeft(int16_t left_speed, int16_t right_speed) {
         Serial.print(", rightSpeed = ");
         Serial.println(right_speed);
     }
+    return *this;
 }
 
-void DCMotorControl::setSerialPrintEnable(bool enable) {
+DCMotorControl& DCMotorControl::setSerialPrintEnable(bool enable) {
     this->serialPrintEnable = enable;
+    return *this;
 }
