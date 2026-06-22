@@ -2,8 +2,9 @@
 
 #include "DCMotorPins.hpp"
 #include "DCMotorPWMInfos.hpp"
-
 #include "DCMotorControl.hpp"
+
+#include "ServoDriverI2CInfos.hpp"
 
 DCMotorControl dcmotors;
 
