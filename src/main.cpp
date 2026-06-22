@@ -5,6 +5,7 @@
 #include "DCMotorControl.hpp"
 
 #include "ServoDriverI2CInfos.hpp"
+#include "ServoDriverControl.hpp"
 
 DCMotorControl dcmotors;
 

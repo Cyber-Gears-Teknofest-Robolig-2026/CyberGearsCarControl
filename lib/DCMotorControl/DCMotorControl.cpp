@@ -13,19 +13,20 @@ DCMotorControl::DCMotorControl(
     uint8_t left_motor_pwm_ch,
     uint16_t left_motor_pwm_freq,
     uint8_t left_motor_pwm_res
-) {
-    this->right_motor_pwm_pin = right_motor_pwm_pin;
-    this->right_motor_forward_pin = right_motor_forward_pin;
-    this->right_motor_backward_pin = right_motor_backward_pin;
-    this->left_motor_pwm_pin = left_motor_pwm_pin;
-    this->left_motor_forward_pin = left_motor_forward_pin;
-    this->left_motor_backward_pin = left_motor_backward_pin;
-    this->right_motor_pwm_ch = right_motor_pwm_ch;
-    this->right_motor_pwm_freq = right_motor_pwm_freq;
-    this->right_motor_pwm_res = right_motor_pwm_res;
-    this->left_motor_pwm_ch = left_motor_pwm_ch;
-    this->left_motor_pwm_freq = left_motor_pwm_freq;
-    this->left_motor_pwm_res = left_motor_pwm_res;
+) :
+    right_motor_pwm_pin(right_motor_pwm_pin),
+    right_motor_forward_pin(right_motor_forward_pin),
+    right_motor_backward_pin(right_motor_backward_pin),
+    left_motor_pwm_pin(left_motor_pwm_pin),
+    left_motor_forward_pin(left_motor_forward_pin),
+    left_motor_backward_pin(left_motor_backward_pin),
+    right_motor_pwm_ch(right_motor_pwm_ch),
+    right_motor_pwm_freq(right_motor_pwm_freq),
+    right_motor_pwm_res(right_motor_pwm_res),
+    left_motor_pwm_ch(left_motor_pwm_ch),
+    left_motor_pwm_freq(left_motor_pwm_freq),
+    left_motor_pwm_res(left_motor_pwm_res) 
+{
     this->RIGHT_PWM_MAX = (1 << right_motor_pwm_res) - 1;
     this->LEFT_PWM_MAX = (1 << left_motor_pwm_res) - 1;
 }
