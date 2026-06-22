@@ -16,6 +16,7 @@ class ServoDriverControl {
             uint8_t i2c_addr = I2C_ADDR,
             TwoWire &i2c = I2C
         );
+        ServoDriverControl& begin();
     
     private:
         TwoWire &i2c;

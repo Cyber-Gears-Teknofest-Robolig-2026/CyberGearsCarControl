@@ -8,10 +8,12 @@
 #include "ServoDriverControl.hpp"
 
 DCMotorControl dcmotors;
+ServoDriverControl servoMotors;
 
 void setup(void) {
     Serial.begin(115200);
     dcmotors.begin().setSerialPrintEnable(true);
+    servoMotors.begin();
 }
 
 void loop(void) {
