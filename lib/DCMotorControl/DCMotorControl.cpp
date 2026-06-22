@@ -76,3 +76,8 @@ void DCMotorControl::moveLeftMotor(int16_t speed) {
         digitalWrite(left_motor_backward_pin, LOW);
     }
 }
+
+void DCMotorControl::moveMotors(int16_t left_speed, int16_t right_speed) {
+    moveLeftMotor(left_speed);
+    moveRightMotor(right_speed);
+}

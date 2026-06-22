@@ -30,6 +30,7 @@ class DCMotorControl {
         void begin(void);
         void moveRightMotor(int16_t speed);
         void moveLeftMotor(int16_t speed);
+        void moveMotors(int16_t left_speed, int16_t right_speed);
     
     private:
         uint8_t right_motor_pwm_pin;
