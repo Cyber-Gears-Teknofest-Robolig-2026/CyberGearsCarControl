@@ -8,6 +8,7 @@
 #include "ServoDriverControl.hpp"
 
 #include "RobotArmChannelInfos.hpp"
+#include "RobotArmServoTypeInfos.hpp"
 #include "RobotArmControl.hpp"
 
 DCMotorControl dcmotors;
