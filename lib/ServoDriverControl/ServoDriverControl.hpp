@@ -17,8 +17,8 @@ class ServoDriverControl {
             TwoWire &i2c = I2C
         );
         ServoDriverControl& begin();
-        ServoDriverControl& setServo(uint8_t channel, uint8_t angle);
         ServoDriverControl& setServoPulse(uint8_t channel, uint16_t pulse);
+        ServoDriverControl& setServoAngle(uint8_t channel, uint8_t angle);
         ServoDriverControl& setSerialPrintEnable(bool enable);
         bool serialPrintEnable = true;
     

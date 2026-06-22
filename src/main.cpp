@@ -23,11 +23,11 @@ void setup(void) {
 
 void loop(void) {
 
-    servoMotors.setServo(0, 0);
+    servoMotors.setServoAngle(0, 0);
     delay(1000);
-    servoMotors.setServo(0, 90);
+    servoMotors.setServoAngle(0, 90);
     delay(1000);
-    servoMotors.setServo(0, 180);
+    servoMotors.setServoAngle(0, 180);
     delay(1000);
 
     /*dcmotors.moveForward(dcmotors.LEFT_PWM_MAX, dcmotors.RIGHT_PWM_MAX);

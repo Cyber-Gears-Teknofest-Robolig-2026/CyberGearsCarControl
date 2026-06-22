@@ -21,32 +21,32 @@ RobotArmControl::RobotArmControl(
 }
 
 RobotArmControl& RobotArmControl::setR0Angle(uint8_t angle) {
-    servoDriver.setServo(r0_channel, angle);
+    servoDriver.setServoAngle(r0_channel, angle);
     return *this;
 }
 
 RobotArmControl& RobotArmControl::setR1Angle(uint8_t angle) {
-    servoDriver.setServo(r1_channel, angle);
+    servoDriver.setServoAngle(r1_channel, angle);
     return *this;
 }
 
 RobotArmControl& RobotArmControl::setR2Angle(uint8_t angle) {
-    servoDriver.setServo(r2_channel, angle);
+    servoDriver.setServoAngle(r2_channel, angle);
     return *this;
 }
 
 RobotArmControl& RobotArmControl::setR3Angle(uint8_t angle) {
-    servoDriver.setServo(r3_channel, angle);
+    servoDriver.setServoAngle(r3_channel, angle);
     return *this;
 }
 
 RobotArmControl& RobotArmControl::setR4Angle(uint8_t angle) {
-    servoDriver.setServo(r4_channel, angle);
+    servoDriver.setServoAngle(r4_channel, angle);
     return *this;
 }
 
 RobotArmControl& RobotArmControl::setR5Angle(uint8_t angle) {
-    servoDriver.setServo(r5_channel, angle);
+    servoDriver.setServoAngle(r5_channel, angle);
     return *this;
 }
 
