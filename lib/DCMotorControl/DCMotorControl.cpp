@@ -26,6 +26,8 @@ DCMotorControl::DCMotorControl(
     this->left_motor_pwm_ch = left_motor_pwm_ch;
     this->left_motor_pwm_freq = left_motor_pwm_freq;
     this->left_motor_pwm_res = left_motor_pwm_res;
+    this->right_pwm_max = (1 << right_motor_pwm_res) - 1;
+    this->left_pwm_max = (1 << left_motor_pwm_res) - 1;
 }
 
 void DCMotorControl::begin(void) {
@@ -42,12 +44,12 @@ void DCMotorControl::begin(void) {
 }
 
 void DCMotorControl::moveRightMotor(int16_t speed) {
-    if (speed > 0) {
-        ledcWrite(right_motor_pwm_ch, speed);
+    if (constrain(speed, -right_pwm_max, right_pwm_max) > 0) {
+        ledcWrite(right_motor_pwm_ch, constrain(speed, -right_pwm_max, right_pwm_max));
         digitalWrite(right_motor_forward_pin, HIGH);
         digitalWrite(right_motor_backward_pin, LOW);
     } 
-    else if (speed < 0) {
+    else if (constrain(speed, -right_pwm_max, right_pwm_max) < 0) {
         ledcWrite(right_motor_pwm_ch, speed);
         digitalWrite(right_motor_forward_pin, LOW);
         digitalWrite(right_motor_backward_pin, HIGH);
@@ -60,12 +62,12 @@ void DCMotorControl::moveRightMotor(int16_t speed) {
 }
 
 void DCMotorControl::moveLeftMotor(int16_t speed) {
-    if (speed > 0) {
-        ledcWrite(left_motor_pwm_ch, speed);
+    if (constrain(speed, -left_pwm_max, left_pwm_max) > 0) {
+        ledcWrite(left_motor_pwm_ch, constrain(speed, -left_pwm_max, left_pwm_max));
         digitalWrite(left_motor_forward_pin, HIGH);
         digitalWrite(left_motor_backward_pin, LOW);
     } 
-    else if (speed < 0) {
+    else if (constrain(speed, -left_pwm_max, left_pwm_max) < 0) {
         ledcWrite(left_motor_pwm_ch, speed);
         digitalWrite(left_motor_forward_pin, LOW);
         digitalWrite(left_motor_backward_pin, HIGH);

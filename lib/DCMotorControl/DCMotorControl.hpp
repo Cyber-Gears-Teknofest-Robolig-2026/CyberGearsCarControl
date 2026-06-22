@@ -45,6 +45,8 @@ class DCMotorControl {
         uint8_t left_motor_pwm_ch;
         uint16_t left_motor_pwm_freq;
         uint8_t left_motor_pwm_res;
+        uint16_t right_pwm_max;
+        uint16_t left_pwm_max;
 };
 
 #endif
