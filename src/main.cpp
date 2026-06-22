@@ -7,8 +7,13 @@
 #include "ServoDriverI2CInfos.hpp"
 #include "ServoDriverControl.hpp"
 
+#include "RobotArmChannelInfos.hpp"
+#include "RobotArmControl.hpp"
+
 DCMotorControl dcmotors;
 ServoDriverControl servoMotors;
+
+RobotArmControl robotArm(servoMotors);
 
 void setup(void) {
     Serial.begin(115200);
