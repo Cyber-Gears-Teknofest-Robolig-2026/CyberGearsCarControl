@@ -36,10 +36,12 @@ class DCMotorControl {
         void moveBackward(int16_t left_speed, int16_t right_speed);
         void turnRight(int16_t left_speed, int16_t right_speed);
         void turnLeft(int16_t left_speed, int16_t right_speed);
+        void setSerialPrintEnable(bool enable);
         uint16_t RIGHT_PWM_MIN = 0;
         uint16_t LEFT_PWM_MIN = 0;
         uint16_t RIGHT_PWM_MAX;
         uint16_t LEFT_PWM_MAX;
+        bool serialPrintEnable = true;
     
     private:
         uint8_t right_motor_pwm_pin;

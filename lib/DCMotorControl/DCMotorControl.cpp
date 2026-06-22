@@ -28,8 +28,6 @@ DCMotorControl::DCMotorControl(
     this->left_motor_pwm_res = left_motor_pwm_res;
     this->RIGHT_PWM_MAX = (1 << right_motor_pwm_res) - 1;
     this->LEFT_PWM_MAX = (1 << left_motor_pwm_res) - 1;
-    this->RIGHT_PWM_MIN = 0;
-    this->LEFT_PWM_MIN = 0;
 }
 
 void DCMotorControl::begin(void) {
@@ -62,8 +60,10 @@ void DCMotorControl::moveRightMotor(int16_t speed) {
         digitalWrite(right_motor_forward_pin, LOW);
         digitalWrite(right_motor_backward_pin, LOW);
     }
-    Serial.print("moveRightMotor: speed = ");
-    Serial.println(speed);
+    if (serialPrintEnable) {
+        Serial.print("moveRightMotor: speed = ");
+        Serial.println(speed);
+    }
 }
 
 void DCMotorControl::moveLeftMotor(int16_t speed) {
@@ -82,52 +82,70 @@ void DCMotorControl::moveLeftMotor(int16_t speed) {
         digitalWrite(left_motor_forward_pin, LOW);
         digitalWrite(left_motor_backward_pin, LOW);
     }
-    Serial.print("moveLeftMotor: speed = ");
-    Serial.println(speed);
+    if (serialPrintEnable) {
+        Serial.print("moveLeftMotor: speed = ");
+        Serial.println(speed);
+    }
 }
 
 void DCMotorControl::moveMotors(int16_t left_speed, int16_t right_speed) {
     moveLeftMotor(left_speed);
     moveRightMotor(right_speed);
-    Serial.print("moveMotors: leftSpeed = ");
-    Serial.print(left_speed);
-    Serial.print(", rightSpeed = ");
-    Serial.println(right_speed);
+    if (serialPrintEnable) {
+        Serial.print("moveMotors: leftSpeed = ");
+        Serial.print(left_speed);
+        Serial.print(", rightSpeed = ");
+        Serial.println(right_speed);
+    }
 }
 
 void DCMotorControl::stopMotors(void) {
     moveMotors(0, 0);
-    Serial.println("stopMotors: leftSpeed = 0, rightSpeed = 0");
+    if (serialPrintEnable) {
+        Serial.println("stopMotors: leftSpeed = 0, rightSpeed = 0");
+    }
 }
 
 void DCMotorControl::moveForward(int16_t left_speed, int16_t right_speed) {
     moveMotors(left_speed, right_speed);
-    Serial.print("moveForward: leftSpeed = ");
-    Serial.print(left_speed);
-    Serial.print(", rightSpeed = ");
-    Serial.println(right_speed);
+    if (serialPrintEnable) {
+        Serial.print("moveForward: leftSpeed = ");
+        Serial.print(left_speed);
+        Serial.print(", rightSpeed = ");
+        Serial.println(right_speed);
+    }
 }
 
 void DCMotorControl::moveBackward(int16_t left_speed, int16_t right_speed) {
     moveMotors(-left_speed, -right_speed);
-    Serial.print("moveBackward: leftSpeed = ");
-    Serial.print(-left_speed);
-    Serial.print(", rightSpeed = ");
-    Serial.println(-right_speed);
+    if (serialPrintEnable) {
+        Serial.print("moveBackward: leftSpeed = ");
+        Serial.print(-left_speed);
+        Serial.print(", rightSpeed = ");
+        Serial.println(-right_speed);
+    }
 }
 
 void DCMotorControl::turnRight(int16_t left_speed, int16_t right_speed) {
     moveMotors(left_speed, -right_speed);
-    Serial.print("turnRight: leftSpeed = ");
-    Serial.print(left_speed);
-    Serial.print(", rightSpeed = ");
-    Serial.println(-right_speed);
+    if (serialPrintEnable) {
+        Serial.print("turnRight: leftSpeed = ");
+        Serial.print(left_speed);
+        Serial.print(", rightSpeed = ");
+        Serial.println(-right_speed);
+    }
 }
 
 void DCMotorControl::turnLeft(int16_t left_speed, int16_t right_speed) {
     moveMotors(-left_speed, right_speed);
-    Serial.print("turnLeft: leftSpeed = ");
-    Serial.print(-left_speed);
-    Serial.print(", rightSpeed = ");
-    Serial.println(right_speed);
+    if (serialPrintEnable) {
+        Serial.print("turnLeft: leftSpeed = ");
+        Serial.print(-left_speed);
+        Serial.print(", rightSpeed = ");
+        Serial.println(right_speed);
+    }
+}
+
+void DCMotorControl::setSerialPrintEnable(bool enable) {
+    this->serialPrintEnable = enable;
 }
