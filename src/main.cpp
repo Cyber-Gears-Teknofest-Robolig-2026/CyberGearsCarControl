@@ -21,11 +21,25 @@ void setup(void) {
     Serial.begin(115200);
     dcmotors.begin().setSerialPrintEnable(true);
     servoMotors.begin().setSerialPrintEnable(true);
+    robotArm.setSerialPrintEnable(true);
 }
 
 void loop(void) {
 
-    servoMotors.setServoAngle(0, 0);
+    robotArm.setValue(0, -90);
+    delay(1000);
+    robotArm.setValue(0, 0);
+    delay(1000);
+    robotArm.setValue(0, 90);
+    delay(1000);
+    robotArm.setValue(1, 0);
+    delay(1000);
+    robotArm.setValue(1, 90);
+    delay(1000);
+    robotArm.setValue(1, 180);
+    delay(1000);
+
+    /*servoMotors.setServoAngle(0, 0);
     delay(1000);
     servoMotors.setServoAngle(0, 90);
     delay(1000);
@@ -36,7 +50,7 @@ void loop(void) {
     servoMotors.setServoSpeed(0, 0);
     delay(1000);
     servoMotors.setServoSpeed(0, 90);
-    delay(1000);
+    delay(1000);*/
 
     /*dcmotors.moveForward(dcmotors.getLeftPwmMax(), dcmotors.getRightPwmMax());
     delay(1000);

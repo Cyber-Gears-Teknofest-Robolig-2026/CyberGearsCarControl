@@ -76,7 +76,9 @@ class RobotArmControl {
         RobotArmControl& setR4ValuePulse(int16_t pulse);
         RobotArmControl& setR5ValuePulse(int16_t pulse);
         RobotArmControl& setAllValuePulse(int16_t r0_pulse, int16_t r1_pulse, int16_t r2_pulse, int16_t r3_pulse, int16_t r4_pulse, int16_t r5_pulse);
-    
+        RobotArmControl& setSerialPrintEnable(bool enable);
+        bool getSerialPrintEnable(void) const;
+
     private:
         ServoDriverControl &servoDriver;
         uint8_t r0_channel;
@@ -93,6 +95,7 @@ class RobotArmControl {
         bool r5_is360servo;
         uint8_t r_channels[6];
         bool is360Servos[6];
+        bool serialPrintEnable = true;
 };
 
 #endif
