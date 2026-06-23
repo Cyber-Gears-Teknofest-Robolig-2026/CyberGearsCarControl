@@ -67,8 +67,9 @@ void onBTClassicDataReceived() {
         dcmotors.moveLeftMotor(value.toInt());
     }
     else if (command == BT_MOTORS_ALL) {
-        String rightSpeedStr = value.substring(0, value.indexOf(','));
-        String leftSpeedStr = value.substring(value.indexOf(',') + 1);
+        int firstComma  = value.indexOf(',');
+        String rightSpeedStr = value.substring(0, firstComma);
+        String leftSpeedStr = value.substring(firstComma + 1);
         int16_t rightSpeed = rightSpeedStr.toInt();
         int16_t leftSpeed = leftSpeedStr.toInt();
         dcmotors.moveMotors(leftSpeed, rightSpeed);
@@ -110,6 +111,20 @@ void onBTClassicDataReceived() {
         int16_t r4Value = r4ValueStr.toInt();
         int16_t r5Value = r5ValueStr.toInt();
         robotArm.setAllValue(r0Value, r1Value, r2Value, r3Value, r4Value, r5Value);
+    }
+    else if (command == BT_ZIPLINE_FRONT) {
+        ziplineMechanism.setFrontAngle(value.toInt());
+    }
+    else if (command == BT_ZIPLINE_BACK) {
+        ziplineMechanism.setBackAngle(value.toInt());
+    }
+    else if (command == BT_ZIPLINE_ALL) {
+        int firstComma  = value.indexOf(',');
+        String frontValueStr = value.substring(0, firstComma);
+        String backValueStr = value.substring(firstComma + 1);
+        int16_t frontValue = frontValueStr.toInt();
+        int16_t backValue = backValueStr.toInt();
+        ziplineMechanism.setAllAngle(frontValue, backValue);
     }
 }
 
