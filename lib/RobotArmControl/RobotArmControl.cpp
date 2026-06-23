@@ -325,20 +325,25 @@ RobotArmControl& RobotArmControl::setAllAnglePulse(uint16_t r0_pulse, uint16_t r
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setSpeed(uint8_t r_num, int8_t speed) {
+RobotArmControl& RobotArmControl::setSpeed(RobotArmIndex r_index, int8_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
     serialPrintEnable = false;
     servoDriver.setSerialPrintEnable(false);
-    servoDriver.setServoSpeed(r_channels[r_num], constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+    servoDriver.setServoSpeed(r_channels[static_cast<uint8_t>(r_index)], constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     serialPrintEnable = serialPrintEnable_temp;
     servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
     if (serialPrintEnable) {
-        Serial.print("setSpeed: r_num = ");
-        Serial.print(r_num);
+        Serial.print("setSpeed: r_index = ");
+        Serial.print(static_cast<uint8_t>(r_index));
         Serial.print(", speed = ");
         Serial.println(speed);
     }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setSpeed(uint8_t r_num, int8_t speed) {
+    setSpeed(static_cast<RobotArmIndex>(r_num), speed);
     return *this;
 }
 
@@ -441,20 +446,25 @@ RobotArmControl& RobotArmControl::setAllSpeed(int8_t r0_speed, int8_t r1_speed, 
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setSpeedPulse(uint8_t r_num, int16_t pulse) {
+RobotArmControl& RobotArmControl::setSpeedPulse(RobotArmIndex r_index, int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
     serialPrintEnable = false;
     servoDriver.setSerialPrintEnable(false);
-    servoDriver.setServoSpeedPulse(r_channels[r_num], constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
+    servoDriver.setServoSpeedPulse(r_channels[static_cast<uint8_t>(r_index)], constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
     serialPrintEnable = serialPrintEnable_temp;
     servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
     if (serialPrintEnable) {
-        Serial.print("setSpeedPulse: r_num = ");
-        Serial.print(r_num);
+        Serial.print("setSpeedPulse: r_index = ");
+        Serial.print(static_cast<uint8_t>(r_index));
         Serial.print(", pulse = ");
         Serial.println(pulse);
     }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setSpeedPulse(uint8_t r_num, int16_t pulse) {
+    setSpeedPulse(static_cast<RobotArmIndex>(r_num), pulse);
     return *this;
 }
 
