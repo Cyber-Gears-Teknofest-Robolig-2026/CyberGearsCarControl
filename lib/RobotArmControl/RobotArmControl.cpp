@@ -594,7 +594,7 @@ RobotArmControl& RobotArmControl::setValue(uint8_t r_index, int16_t value) {
 RobotArmControl& RobotArmControl::setR0Value(int16_t value) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setValue(0, value);
+    setValue(R0_INDEX, value);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR0Value: value = ");
@@ -606,7 +606,7 @@ RobotArmControl& RobotArmControl::setR0Value(int16_t value) {
 RobotArmControl& RobotArmControl::setR1Value(int16_t value) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setValue(1, value);
+    setValue(R1_INDEX, value);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR1Value: value = ");
@@ -618,7 +618,7 @@ RobotArmControl& RobotArmControl::setR1Value(int16_t value) {
 RobotArmControl& RobotArmControl::setR2Value(int16_t value) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setValue(2, value);
+    setValue(R2_INDEX, value);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR2Value: value = ");
@@ -630,7 +630,7 @@ RobotArmControl& RobotArmControl::setR2Value(int16_t value) {
 RobotArmControl& RobotArmControl::setR3Value(int16_t value) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setValue(3, value);
+    setValue(R3_INDEX, value);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR3Value: value = ");
@@ -642,7 +642,7 @@ RobotArmControl& RobotArmControl::setR3Value(int16_t value) {
 RobotArmControl& RobotArmControl::setR4Value(int16_t value) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setValue(4, value);
+    setValue(R4_INDEX, value);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR4Value: value = ");
@@ -654,7 +654,7 @@ RobotArmControl& RobotArmControl::setR4Value(int16_t value) {
 RobotArmControl& RobotArmControl::setR5Value(int16_t value) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setValue(5, value);
+    setValue(R5_INDEX, value);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR5Value: value = ");
