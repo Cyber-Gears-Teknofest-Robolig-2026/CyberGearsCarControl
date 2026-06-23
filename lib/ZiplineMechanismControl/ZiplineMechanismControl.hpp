@@ -41,7 +41,7 @@ class ZiplineMechanismControl {
         int16_t back_horizontal_default_angle;
         int16_t front_vertical_default_angle;
         int16_t back_vertical_default_angle;
-        std::unordered_map<uint8_t, uint8_t> zipline_mechanism_channels;
+        uint8_t zipline_mechanism_channels[2];
 };
 
 #endif

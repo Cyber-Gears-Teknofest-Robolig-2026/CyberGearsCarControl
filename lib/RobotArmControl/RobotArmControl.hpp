@@ -2,7 +2,6 @@
 #define __ROBOT_ARM_CONTROL_HPP__
 
 #include <cstdint>
-#include <unordered_map>
 
 #include "ServoDriverControl.hpp"
 #include "RobotArmServoTypeInfos.hpp"
@@ -123,8 +122,8 @@ class RobotArmControl {
         int16_t r3_default_value;
         int16_t r4_default_value;
         int16_t r5_default_value;
-        std::unordered_map<uint8_t, uint8_t> r_channels;
-        std::unordered_map<uint8_t, bool> is360Servos;
+        uint8_t r_channels[6];
+        bool is360Servos[6];
         bool serialPrintEnable = true;
 };
 
