@@ -48,11 +48,15 @@ class BTLowEnergyRxCallbacks : public BLECharacteristicCallbacks {
   }
 };
 
+void onBTClassicDataReceived() {
+}
+
 void setup(void) {
 
     Serial.begin(115200);
 
     btClassicSerial.begin(9600);
+    btClassicSerial.onReceive(onBTClassicDataReceived);
 
     BLEDevice::init(BLE_DEVICE_NAME);
     BLEServer* bleServer = BLEDevice::createServer();
