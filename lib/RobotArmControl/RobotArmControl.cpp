@@ -54,6 +54,46 @@ RobotArmControl& RobotArmControl::setValue(uint8_t r_num, uint16_t value) {
     return *this;
 }
 
+RobotArmControl& RobotArmControl::setR0Value(uint16_t value) {
+    setValue(0, value);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR1Value(uint16_t value) {
+    setValue(1, value);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR2Value(uint16_t value) {
+    setValue(2, value);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR3Value(uint16_t value) {
+    setValue(3, value);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR4Value(uint16_t value) {
+    setValue(4, value);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR5Value(uint16_t value) {
+    setValue(5, value);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setAllValue(uint16_t r0_value, uint16_t r1_value, uint16_t r2_value, uint16_t r3_value, uint16_t r4_value, uint16_t r5_value) {
+    setR0Value(r0_value);
+    setR1Value(r1_value);
+    setR2Value(r2_value);
+    setR3Value(r3_value);
+    setR4Value(r4_value);
+    setR5Value(r5_value);
+    return *this;
+}
+
 /*RobotArmControl& RobotArmControl::setPulse(uint8_t r_num, uint16_t pulse) {
     servoDriver.setServoAnglePulse(r_channels[constrain(r_num, 0, 5)], constrain(pulse, 500, 2500));
     return *this;
