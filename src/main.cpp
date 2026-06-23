@@ -1,4 +1,8 @@
 #include <Arduino.h>
+#include <BLEDevice.h>
+#include <BLEServer.h>
+#include <BLEUtils.h>
+#include <BLE2902.h>
 
 //#include "DCMotorPins.hpp"
 //#include "DCMotorPWMInfos.hpp"
@@ -25,8 +29,52 @@ ServoDriverControl servoMotors;
 RobotArmControl robotArm(servoMotors);
 ZiplineMechanismControl ziplineMechanism(servoMotors);
 
+BLECharacteristic* bleTxCharacteristic;
+BLECharacteristic* bleRxCharacteristic;
+
+class BTLowEnergyServerCallbacks : public BLEServerCallbacks {
+
+  void onConnect(BLEServer* server) override {
+  }
+
+  void onDisconnect(BLEServer* server) override {
+    BLEDevice::startAdvertising();
+  }
+};
+
+class BTLowEnergyRxCallbacks : public BLECharacteristicCallbacks {
+
+  void onWrite(BLECharacteristic* characteristic) override {
+  }
+};
+
 void setup(void) {
+
     Serial.begin(115200);
+
+    btClassicSerial.begin(9600);
+
+    BLEDevice::init(BLE_DEVICE_NAME);
+    BLEServer* bleServer = BLEDevice::createServer();
+    bleServer->setCallbacks(new BTLowEnergyServerCallbacks());
+    BLEService* bleService = bleServer->createService(BLE_SERVICE_UUID);
+    bleTxCharacteristic = bleService->createCharacteristic(
+        BLE_TX_CHARACTERISTIC_UUID,
+        BLECharacteristic::PROPERTY_NOTIFY
+    );
+    bleTxCharacteristic->addDescriptor(new BLE2902());
+    bleRxCharacteristic = bleService->createCharacteristic(
+        BLE_RX_CHARACTERISTIC_UUID,
+        BLECharacteristic::PROPERTY_WRITE |
+        BLECharacteristic::PROPERTY_WRITE_NR
+    );
+    bleRxCharacteristic->setCallbacks(new BTLowEnergyRxCallbacks());
+    bleService->start();
+    BLEAdvertising* bleAdvertising = BLEDevice::getAdvertising();
+    bleAdvertising->addServiceUUID(BLE_SERVICE_UUID);
+    bleAdvertising->setScanResponse(true);
+    bleAdvertising->start();
+
     dcmotors.begin().setSerialPrintEnable(true);
     servoMotors.begin().setSerialPrintEnable(true);
     robotArm.reset().setSerialPrintEnable(true);
