@@ -56,6 +56,23 @@ void onBTClassicDataReceived() {
     }
     Serial.print("Message: ");
     Serial.println(message);
+    String command = message.substring(0, message.indexOf(':'));
+    String value = message.substring(message.indexOf(':') + 1);
+    Serial.println(command);
+    Serial.println(value);
+    if (command == BT_MOTOR_RIGHT) {
+        dcmotors.moveRightMotor(value.toInt());
+    }
+    else if (command == BT_MOTOR_LEFT) {
+        dcmotors.moveLeftMotor(value.toInt());
+    }
+    else if (command == BT_MOTORS_ALL) {
+        String rightSpeedStr = value.substring(0, value.indexOf(','));
+        String leftSpeedStr = value.substring(value.indexOf(',') + 1);
+        int16_t rightSpeed = rightSpeedStr.toInt();
+        int16_t leftSpeed = leftSpeedStr.toInt();
+        dcmotors.moveMotors(leftSpeed, rightSpeed);
+    }
 }
 
 void setup(void) {
