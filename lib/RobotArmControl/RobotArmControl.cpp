@@ -471,7 +471,7 @@ RobotArmControl& RobotArmControl::setSpeedPulse(uint8_t r_index, int16_t pulse) 
 RobotArmControl& RobotArmControl::setR0SpeedPulse(int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeedPulse(0, pulse);
+    setSpeedPulse(R0_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR0SpeedPulse: pulse = ");
@@ -483,7 +483,7 @@ RobotArmControl& RobotArmControl::setR0SpeedPulse(int16_t pulse) {
 RobotArmControl& RobotArmControl::setR1SpeedPulse(int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeedPulse(1, pulse);
+    setSpeedPulse(R1_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR1SpeedPulse: pulse = ");
@@ -495,7 +495,7 @@ RobotArmControl& RobotArmControl::setR1SpeedPulse(int16_t pulse) {
 RobotArmControl& RobotArmControl::setR2SpeedPulse(int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeedPulse(2, pulse);
+    setSpeedPulse(R2_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR2SpeedPulse: pulse = ");
@@ -507,7 +507,7 @@ RobotArmControl& RobotArmControl::setR2SpeedPulse(int16_t pulse) {
 RobotArmControl& RobotArmControl::setR3SpeedPulse(int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeedPulse(3, pulse);
+    setSpeedPulse(R3_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR3SpeedPulse: pulse = ");
@@ -519,7 +519,7 @@ RobotArmControl& RobotArmControl::setR3SpeedPulse(int16_t pulse) {
 RobotArmControl& RobotArmControl::setR4SpeedPulse(int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeedPulse(4, pulse);
+    setSpeedPulse(R4_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR4SpeedPulse: pulse = ");
@@ -531,7 +531,7 @@ RobotArmControl& RobotArmControl::setR4SpeedPulse(int16_t pulse) {
 RobotArmControl& RobotArmControl::setR5SpeedPulse(int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeedPulse(5, pulse);
+    setSpeedPulse(R5_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR5SpeedPulse: pulse = ");
