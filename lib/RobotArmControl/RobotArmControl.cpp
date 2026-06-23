@@ -144,6 +144,53 @@ RobotArmControl& RobotArmControl::setAllValuePulse(int16_t r0_pulse, int16_t r1_
     return *this;
 }
 
+//-----------------------------------------------------------------
+
+RobotArmControl& RobotArmControl::setAngle(uint8_t r_num, uint8_t angle) {
+    servoDriver.setServoAngle(r_channels[constrain(r_num, 0, 5)], constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR0Angle(uint8_t angle) {
+    setAngle(0, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR1Angle(uint8_t angle) {
+    setAngle(1, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR2Angle(uint8_t angle) {
+    setAngle(2, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR3Angle(uint8_t angle) {
+    setAngle(3, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR4Angle(uint8_t angle) {
+    setAngle(4, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR5Angle(uint8_t angle) {
+    setAngle(5, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setAllAngle(uint8_t r0_angle, uint8_t r1_angle, uint8_t r2_angle, uint8_t r3_angle, uint8_t r4_angle, uint8_t r5_angle) {
+    setR0Angle(r0_angle);
+    setR1Angle(r1_angle);
+    setR2Angle(r2_angle);
+    setR3Angle(r3_angle);
+    setR4Angle(r4_angle);
+    setR5Angle(r5_angle);
+    return *this;
+}
+
 /*RobotArmControl& RobotArmControl::setPulse(uint8_t r_num, uint16_t pulse) {
     servoDriver.setServoAnglePulse(r_channels[constrain(r_num, 0, 5)], constrain(pulse, 500, 2500));
     return *this;
