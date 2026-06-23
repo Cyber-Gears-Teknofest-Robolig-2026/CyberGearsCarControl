@@ -6,9 +6,11 @@
 #include "ServoDriverControl.hpp"
 #include "RobotArmServoTypeInfos.hpp"
 #include "RobotArmChannelInfos.hpp"
+#include "RobotArmDefaultValues.hpp"
 
 using namespace RobotArmChannelInfos;
 using namespace RobotArmServoTypeInfos;
+using namespace RobotArmDefaultValues;
 
 class RobotArmControl {
     
@@ -26,8 +28,15 @@ class RobotArmControl {
             bool r2_is360servo = R2_IS_360_SERVO,
             bool r3_is360servo = R3_IS_360_SERVO,
             bool r4_is360servo = R4_IS_360_SERVO,
-            bool r5_is360servo = R5_IS_360_SERVO
+            bool r5_is360servo = R5_IS_360_SERVO,
+            int16_t r0_default_value = R0_DEFAULT_VALUE,
+            int16_t r1_default_value = R1_DEFAULT_VALUE,
+            int16_t r2_default_value = R2_DEFAULT_VALUE,
+            int16_t r3_default_value = R3_DEFAULT_VALUE,
+            int16_t r4_default_value = R4_DEFAULT_VALUE,
+            int16_t r5_default_value = R5_DEFAULT_VALUE
         );
+        RobotArmControl& reset();
         RobotArmControl& setAngle(uint8_t r_num, uint8_t angle);
         RobotArmControl& setR0Angle(uint8_t angle);
         RobotArmControl& setR1Angle(uint8_t angle);
@@ -93,6 +102,12 @@ class RobotArmControl {
         bool r3_is360servo;
         bool r4_is360servo;
         bool r5_is360servo;
+        int16_t r0_default_value;
+        int16_t r1_default_value;
+        int16_t r2_default_value;
+        int16_t r3_default_value;
+        int16_t r4_default_value;
+        int16_t r5_default_value;
         uint8_t r_channels[6];
         bool is360Servos[6];
         bool serialPrintEnable = true;

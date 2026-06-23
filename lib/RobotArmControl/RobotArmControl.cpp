@@ -14,7 +14,13 @@ RobotArmControl::RobotArmControl(
     bool r2_is360servo,
     bool r3_is360servo,
     bool r4_is360servo,
-    bool r5_is360servo
+    bool r5_is360servo,
+    int16_t r0_value,
+    int16_t r1_value,
+    int16_t r2_value,
+    int16_t r3_value,
+    int16_t r4_value,
+    int16_t r5_value
 ) :
     servoDriver(servoDriver),
     r0_channel(r0_channel),
@@ -28,7 +34,13 @@ RobotArmControl::RobotArmControl(
     r2_is360servo(r2_is360servo),
     r3_is360servo(r3_is360servo),
     r4_is360servo(r4_is360servo),
-    r5_is360servo(r5_is360servo)
+    r5_is360servo(r5_is360servo),
+    r0_default_value(r0_default_value),
+    r1_default_value(r1_default_value),
+    r2_default_value(r2_default_value),
+    r3_default_value(r3_default_value),
+    r4_default_value(r4_default_value),
+    r5_default_value(r5_default_value)
 {
     r_channels[0] = r0_channel;
     r_channels[1] = r1_channel;
@@ -42,6 +54,34 @@ RobotArmControl::RobotArmControl(
     is360Servos[3] = r3_is360servo;
     is360Servos[4] = r4_is360servo;
     is360Servos[5] = r5_is360servo;
+}
+
+
+RobotArmControl& RobotArmControl::reset(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    setAngle(0, r0_default_value);
+    setAngle(1, r1_default_value);
+    setAngle(2, r2_default_value);
+    setAngle(3, r3_default_value);
+    setAngle(4, r4_default_value);
+    setAngle(5, r5_default_value);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("reset: r0 = ");
+        Serial.print(r0_default_value);
+        Serial.print(", r1 = ");
+        Serial.print(r1_default_value);
+        Serial.print(", r2 = ");
+        Serial.print(r2_default_value);
+        Serial.print(", r3 = ");
+        Serial.print(r3_default_value);
+        Serial.print(", r4 = ");
+        Serial.print(r4_default_value);
+        Serial.print(", r5 = ");
+        Serial.println(r5_default_value);
+    }
+    return *this;
 }
 
 RobotArmControl& RobotArmControl::setAngle(uint8_t r_num, uint8_t angle) {

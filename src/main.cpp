@@ -10,6 +10,7 @@
 
 #include "RobotArmChannelInfos.hpp"
 #include "RobotArmServoTypeInfos.hpp"
+#include "RobotArmDefaultValues.hpp"
 #include "RobotArmControl.hpp"
 
 DCMotorControl dcmotors;
@@ -21,7 +22,7 @@ void setup(void) {
     Serial.begin(115200);
     dcmotors.begin().setSerialPrintEnable(true);
     servoMotors.begin().setSerialPrintEnable(true);
-    robotArm.setSerialPrintEnable(true);
+    robotArm.reset().setSerialPrintEnable(true);
 }
 
 void loop(void) {
