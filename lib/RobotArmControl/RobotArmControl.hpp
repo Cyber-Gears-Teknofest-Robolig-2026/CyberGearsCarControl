@@ -28,14 +28,22 @@ class RobotArmControl {
             bool r4_is360servo = R4_IS_360_SERVO,
             bool r5_is360servo = R5_IS_360_SERVO
         );
-        RobotArmControl& setValue(uint8_t r_num, uint16_t pulse);
-        RobotArmControl& setR0Value(uint16_t value);
-        RobotArmControl& setR1Value(uint16_t value);
-        RobotArmControl& setR2Value(uint16_t value);
-        RobotArmControl& setR3Value(uint16_t value);
-        RobotArmControl& setR4Value(uint16_t value);
-        RobotArmControl& setR5Value(uint16_t value);
-        RobotArmControl& setAllValue(uint16_t r0_value, uint16_t r1_value, uint16_t r2_value, uint16_t r3_value, uint16_t r4_value, uint16_t r5_value);
+        RobotArmControl& setValue(uint8_t r_num, int16_t value);
+        RobotArmControl& setR0Value(int16_t value);
+        RobotArmControl& setR1Value(int16_t value);
+        RobotArmControl& setR2Value(int16_t value);
+        RobotArmControl& setR3Value(int16_t value);
+        RobotArmControl& setR4Value(int16_t value);
+        RobotArmControl& setR5Value(int16_t value);
+        RobotArmControl& setAllValue(int16_t r0_value, int16_t r1_value, int16_t r2_value, int16_t r3_value, int16_t r4_value, int16_t r5_value);
+        RobotArmControl& setValuePulse(uint8_t r_num, int16_t pulse);
+        RobotArmControl& setR0ValuePulse(int16_t pulse);
+        RobotArmControl& setR1ValuePulse(int16_t pulse);
+        RobotArmControl& setR2ValuePulse(int16_t pulse);
+        RobotArmControl& setR3ValuePulse(int16_t pulse);
+        RobotArmControl& setR4ValuePulse(int16_t pulse);
+        RobotArmControl& setR5ValuePulse(int16_t pulse);
+        RobotArmControl& setAllValuePulse(int16_t r0_pulse, int16_t r1_pulse, int16_t r2_pulse, int16_t r3_pulse, int16_t r4_pulse, int16_t r5_pulse);
         /*RobotArmControl& setPulse(uint8_t r_num, uint16_t pulse);
         RobotArmControl& setR0Pulse(uint16_t pulse);
         RobotArmControl& setR1Pulse(uint16_t pulse);

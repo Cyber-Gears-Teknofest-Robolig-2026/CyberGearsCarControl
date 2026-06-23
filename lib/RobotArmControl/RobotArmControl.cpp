@@ -44,7 +44,7 @@ RobotArmControl::RobotArmControl(
     is360Servos[5] = r5_is360servo;
 }
 
-RobotArmControl& RobotArmControl::setValue(uint8_t r_num, uint16_t value) {
+RobotArmControl& RobotArmControl::setValue(uint8_t r_num, int16_t value) {
     if (not is360Servos[constrain(r_num, 0, 5)]) {
         servoDriver.setServoAngle(r_channels[constrain(r_num, 0, 5)], constrain(value, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     }
@@ -54,43 +54,93 @@ RobotArmControl& RobotArmControl::setValue(uint8_t r_num, uint16_t value) {
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setR0Value(uint16_t value) {
+RobotArmControl& RobotArmControl::setR0Value(int16_t value) {
     setValue(0, value);
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setR1Value(uint16_t value) {
+RobotArmControl& RobotArmControl::setR1Value(int16_t value) {
     setValue(1, value);
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setR2Value(uint16_t value) {
+RobotArmControl& RobotArmControl::setR2Value(int16_t value) {
     setValue(2, value);
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setR3Value(uint16_t value) {
+RobotArmControl& RobotArmControl::setR3Value(int16_t value) {
     setValue(3, value);
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setR4Value(uint16_t value) {
+RobotArmControl& RobotArmControl::setR4Value(int16_t value) {
     setValue(4, value);
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setR5Value(uint16_t value) {
+RobotArmControl& RobotArmControl::setR5Value(int16_t value) {
     setValue(5, value);
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setAllValue(uint16_t r0_value, uint16_t r1_value, uint16_t r2_value, uint16_t r3_value, uint16_t r4_value, uint16_t r5_value) {
+RobotArmControl& RobotArmControl::setAllValue(int16_t r0_value, int16_t r1_value, int16_t r2_value, int16_t r3_value, int16_t r4_value, int16_t r5_value) {
     setR0Value(r0_value);
     setR1Value(r1_value);
     setR2Value(r2_value);
     setR3Value(r3_value);
     setR4Value(r4_value);
     setR5Value(r5_value);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setValuePulse(uint8_t r_num, int16_t pulse) {
+    if (not is360Servos[constrain(r_num, 0, 5)]) {
+        servoDriver.setServoAnglePulse(r_channels[constrain(r_num, 0, 5)], constrain(pulse, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
+    }
+    else {
+        servoDriver.setServoSpeedPulse(r_channels[constrain(r_num, 0, 5)], constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR0ValuePulse(int16_t pulse) {
+    setValuePulse(0, pulse);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR1ValuePulse(int16_t pulse) {
+    setValuePulse(1, pulse);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR2ValuePulse(int16_t pulse) {
+    setValuePulse(2, pulse);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR3ValuePulse(int16_t pulse) {
+    setValuePulse(3, pulse);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR4ValuePulse(int16_t pulse) {
+    setValuePulse(4, pulse);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setR5ValuePulse(int16_t pulse) {
+    setValuePulse(5, pulse);
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setAllValuePulse(int16_t r0_pulse, int16_t r1_pulse, int16_t r2_pulse, int16_t r3_pulse, int16_t r4_pulse, int16_t r5_pulse) {
+    setR0ValuePulse(r0_pulse);
+    setR1ValuePulse(r1_pulse);
+    setR2ValuePulse(r2_pulse);
+    setR3ValuePulse(r3_pulse);
+    setR4ValuePulse(r4_pulse);
+    setR5ValuePulse(r5_pulse);
     return *this;
 }
 
