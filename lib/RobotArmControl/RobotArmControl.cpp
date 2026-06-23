@@ -15,12 +15,12 @@ RobotArmControl::RobotArmControl(
     bool r3_is360servo,
     bool r4_is360servo,
     bool r5_is360servo,
-    int16_t r0_value,
-    int16_t r1_value,
-    int16_t r2_value,
-    int16_t r3_value,
-    int16_t r4_value,
-    int16_t r5_value
+    int16_t r0_default_value,
+    int16_t r1_default_value,
+    int16_t r2_default_value,
+    int16_t r3_default_value,
+    int16_t r4_default_value,
+    int16_t r5_default_value
 ) :
     servoDriver(servoDriver),
     r0_channel(r0_channel),
@@ -56,7 +56,6 @@ RobotArmControl::RobotArmControl(
     is360Servos[5] = r5_is360servo;
 }
 
-
 RobotArmControl& RobotArmControl::reset(void) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
@@ -84,20 +83,25 @@ RobotArmControl& RobotArmControl::reset(void) {
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setAngle(uint8_t r_num, uint8_t angle) {
+RobotArmControl& RobotArmControl::setAngle(RobotArmIndex r_index, uint8_t angle) {
     bool serialPrintEnable_temp = serialPrintEnable;
     bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
     serialPrintEnable = false;
     servoDriver.setSerialPrintEnable(false);
-    servoDriver.setServoAngle(r_channels[constrain(r_num, 0, 5)], constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    servoDriver.setServoAngle(r_channels[static_cast<uint8_t>(r_index)], constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     serialPrintEnable = serialPrintEnable_temp;
     servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
     if (serialPrintEnable) {
-        Serial.print("setAngle: r_num = ");
-        Serial.print(r_num);
+        Serial.print("setAngle: r_index = ");
+        Serial.print(static_cast<uint8_t>(r_index));
         Serial.print(", angle = ");
         Serial.println(angle);
     }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setAngle(uint8_t r_index, uint8_t angle) {
+    setAngle(static_cast<RobotArmIndex>(r_index), angle);
     return *this;
 }
 
@@ -200,20 +204,25 @@ RobotArmControl& RobotArmControl::setAllAngle(uint8_t r0_angle, uint8_t r1_angle
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setAnglePulse(uint8_t r_num, uint16_t pulse) {
+RobotArmControl& RobotArmControl::setAnglePulse(RobotArmIndex r_index, uint16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
     serialPrintEnable = false;
     servoDriver.setSerialPrintEnable(false);
-    servoDriver.setServoAnglePulse(r_channels[constrain(r_num, 0, 5)], constrain(pulse, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
+    servoDriver.setServoAnglePulse(r_channels[static_cast<uint8_t>(r_index)], constrain(pulse, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
     serialPrintEnable = serialPrintEnable_temp;
     servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
     if (serialPrintEnable) {
-        Serial.print("setAnglePulse: r_num = ");
-        Serial.print(r_num);
+        Serial.print("setAnglePulse: r_index = ");
+        Serial.print(static_cast<uint8_t>(r_index));
         Serial.print(", pulse = ");
         Serial.println(pulse);
     }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setAnglePulse(uint8_t r_index, uint16_t pulse) {
+    setAnglePulse(static_cast<RobotArmIndex>(r_index), pulse);
     return *this;
 }
 
@@ -321,7 +330,7 @@ RobotArmControl& RobotArmControl::setSpeed(uint8_t r_num, int8_t speed) {
     bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
     serialPrintEnable = false;
     servoDriver.setSerialPrintEnable(false);
-    servoDriver.setServoSpeed(r_channels[constrain(r_num, 0, 5)], constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+    servoDriver.setServoSpeed(r_channels[r_num], constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     serialPrintEnable = serialPrintEnable_temp;
     servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
     if (serialPrintEnable) {
@@ -437,7 +446,7 @@ RobotArmControl& RobotArmControl::setSpeedPulse(uint8_t r_num, int16_t pulse) {
     bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
     serialPrintEnable = false;
     servoDriver.setSerialPrintEnable(false);
-    servoDriver.setServoSpeedPulse(r_channels[constrain(r_num, 0, 5)], constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
+    servoDriver.setServoSpeedPulse(r_channels[r_num], constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
     serialPrintEnable = serialPrintEnable_temp;
     servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
     if (serialPrintEnable) {
@@ -551,11 +560,11 @@ RobotArmControl& RobotArmControl::setAllSpeedPulse(int16_t r0_pulse, int16_t r1_
 RobotArmControl& RobotArmControl::setValue(uint8_t r_num, int16_t value) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    if (not is360Servos[constrain(r_num, 0, 5)]) {
-        setAngle(constrain(r_num, 0, 5), constrain(value, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    if (not is360Servos[r_num]) {
+        setAngle(r_num, constrain(value, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     }
     else {
-        setSpeed(constrain(r_num, 0, 5), constrain(value, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+        setSpeed(r_num, constrain(value, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     }
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
@@ -669,11 +678,11 @@ RobotArmControl& RobotArmControl::setAllValue(int16_t r0_value, int16_t r1_value
 RobotArmControl& RobotArmControl::setValuePulse(uint8_t r_num, int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    if (not is360Servos[constrain(r_num, 0, 5)]) {
-        setAnglePulse(constrain(r_num, 0, 5), constrain(pulse, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
+    if (not is360Servos[r_num]) {
+        setAnglePulse(r_num, constrain(pulse, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
     }
     else {
-        setSpeedPulse(constrain(r_num, 0, 5), constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
+        setSpeedPulse(r_num, constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
     }
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {

@@ -13,8 +13,16 @@ using namespace RobotArmServoTypeInfos;
 using namespace RobotArmDefaultValues;
 
 class RobotArmControl {
-    
+
     public:
+        enum class RobotArmIndex : uint8_t {
+            R0_INDEX = 0,
+            R1_INDEX = 1,
+            R2_INDEX = 2,
+            R3_INDEX = 3,
+            R4_INDEX = 4,
+            R5_INDEX = 5
+        };
         RobotArmControl(
             ServoDriverControl &servoDriver,
             uint8_t r0_channel = R0_CHANNEL,
@@ -37,7 +45,8 @@ class RobotArmControl {
             int16_t r5_default_value = R5_DEFAULT_VALUE
         );
         RobotArmControl& reset();
-        RobotArmControl& setAngle(uint8_t r_num, uint8_t angle);
+        RobotArmControl& setAngle(RobotArmIndex r_index, uint8_t angle);
+        RobotArmControl& setAngle(uint8_t r_index, uint8_t angle);
         RobotArmControl& setR0Angle(uint8_t angle);
         RobotArmControl& setR1Angle(uint8_t angle);
         RobotArmControl& setR2Angle(uint8_t angle);
@@ -45,7 +54,8 @@ class RobotArmControl {
         RobotArmControl& setR4Angle(uint8_t angle);
         RobotArmControl& setR5Angle(uint8_t angle);
         RobotArmControl& setAllAngle(uint8_t r0_angle, uint8_t r1_angle, uint8_t r2_angle, uint8_t r3_angle, uint8_t r4_angle, uint8_t r5_angle);
-        RobotArmControl& setAnglePulse(uint8_t r_num, uint16_t pulse);
+        RobotArmControl& setAnglePulse(RobotArmIndex r_index, uint16_t pulse);
+        RobotArmControl& setAnglePulse(uint8_t r_index, uint16_t pulse);
         RobotArmControl& setR0AnglePulse(uint16_t pulse);
         RobotArmControl& setR1AnglePulse(uint16_t pulse);
         RobotArmControl& setR2AnglePulse(uint16_t pulse);

@@ -22,6 +22,14 @@ class ZiplineMechanismControl {
             int16_t front_vertical_default_angle = FRONT_VERTICAL_DEFAULT_ANGLE,
             int16_t back_vertical_default_angle = BACK_VERTICAL_DEFAULT_ANGLE
         );
+        ZiplineMechanismControl& setAngle(MechanismNum mechanism_num, uint8_t angle);
+        ZiplineMechanismControl& setFrontAngle(uint8_t angle);
+        ZiplineMechanismControl& setBackAngle(uint8_t angle);
+        ZiplineMechanismControl& setAllAngle(uint8_t front_angle, uint8_t back_angle);
+        enum MechanismNum {
+            FRONT = 0,
+            BACK = 1
+        };
     
     private:
         ServoDriverControl &servoDriver;
