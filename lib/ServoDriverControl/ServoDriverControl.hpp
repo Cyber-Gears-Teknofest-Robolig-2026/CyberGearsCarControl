@@ -24,12 +24,13 @@ class ServoDriverControl {
         ServoDriverControl& setServoSpeed(uint8_t channel, int8_t speed);
         ServoDriverControl& setServoSpeedPulse(uint8_t channel, int16_t pulse);
         ServoDriverControl& setSerialPrintEnable(bool enable);
-        bool serialPrintEnable = true;
+        bool getSerialPrintEnable(void) const;
     
     private:
         TwoWire &i2c;
         uint8_t i2c_addr;
         Adafruit_PWMServoDriver servoMotorDriver;
+        bool serialPrintEnable = true;
 };
 
 #endif

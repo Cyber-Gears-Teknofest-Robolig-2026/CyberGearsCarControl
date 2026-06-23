@@ -83,3 +83,7 @@ ServoDriverControl& ServoDriverControl::setSerialPrintEnable(bool enable) {
     this->serialPrintEnable = enable;
     return *this;
 }
+
+bool ServoDriverControl::getSerialPrintEnable(void) const {
+    return serialPrintEnable;
+}
