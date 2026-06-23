@@ -60,7 +60,7 @@ class RobotArmControl {
         RobotArmControl& setR4SpeedPulse(int16_t pulse);
         RobotArmControl& setR5SpeedPulse(int16_t pulse);
         RobotArmControl& setAllSpeedPulse(int16_t r0_pulse, int16_t r1_pulse, int16_t r2_pulse, int16_t r3_pulse, int16_t r4_pulse, int16_t r5_pulse);
-         RobotArmControl& setValue(uint8_t r_num, int16_t value);
+        RobotArmControl& setValue(uint8_t r_num, int16_t value);
         RobotArmControl& setR0Value(int16_t value);
         RobotArmControl& setR1Value(int16_t value);
         RobotArmControl& setR2Value(int16_t value);
