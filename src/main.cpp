@@ -15,7 +15,6 @@
 
 DCMotorControl dcmotors;
 ServoDriverControl servoMotors;
-
 RobotArmControl robotArm(servoMotors);
 
 void setup(void) {
