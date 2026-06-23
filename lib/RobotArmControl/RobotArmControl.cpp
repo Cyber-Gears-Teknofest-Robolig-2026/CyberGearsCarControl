@@ -350,7 +350,7 @@ RobotArmControl& RobotArmControl::setSpeed(uint8_t r_index, int8_t speed) {
 RobotArmControl& RobotArmControl::setR0Speed(int8_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeed(0, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+    setSpeed(R0_INDEX, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR0Speed: speed = ");
@@ -362,7 +362,7 @@ RobotArmControl& RobotArmControl::setR0Speed(int8_t speed) {
 RobotArmControl& RobotArmControl::setR1Speed(int8_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeed(1, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+    setSpeed(R1_INDEX, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR1Speed: speed = ");
@@ -374,7 +374,7 @@ RobotArmControl& RobotArmControl::setR1Speed(int8_t speed) {
 RobotArmControl& RobotArmControl::setR2Speed(int8_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeed(2, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+    setSpeed(R2_INDEX, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR2Speed: speed = ");
@@ -386,7 +386,7 @@ RobotArmControl& RobotArmControl::setR2Speed(int8_t speed) {
 RobotArmControl& RobotArmControl::setR3Speed(int8_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeed(3, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+    setSpeed(R3_INDEX, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR3Speed: speed = ");
@@ -398,7 +398,7 @@ RobotArmControl& RobotArmControl::setR3Speed(int8_t speed) {
 RobotArmControl& RobotArmControl::setR4Speed(int8_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeed(4, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+    setSpeed(R4_INDEX, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR4Speed: speed = ");
@@ -410,7 +410,7 @@ RobotArmControl& RobotArmControl::setR4Speed(int8_t speed) {
 RobotArmControl& RobotArmControl::setR5Speed(int8_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setSpeed(5, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+    setSpeed(R5_INDEX, constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR5Speed: speed = ");
