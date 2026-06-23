@@ -30,3 +30,19 @@ ZiplineMechanismControl& ZiplineMechanismControl::setAngle(uint8_t mechanism_num
     setAngle(static_cast<MechanismIndex>(mechanism_num), angle);
     return *this;
 }
+
+ZiplineMechanismControl& ZiplineMechanismControl::setFrontAngle(uint8_t angle) {
+    setAngle(FRONT_INDEX, angle);
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::setBackAngle(uint8_t angle) {
+    setAngle(BACK_INDEX, angle);
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::setAllAngle(uint8_t front_angle, uint8_t back_angle) {
+    setFrontAngle(front_angle);
+    setBackAngle(back_angle);
+    return *this;
+}
