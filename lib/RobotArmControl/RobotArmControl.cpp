@@ -46,9 +46,12 @@ RobotArmControl::RobotArmControl(
 
 RobotArmControl& RobotArmControl::setAngle(uint8_t r_num, uint8_t angle) {
     bool serialPrintEnable_temp = serialPrintEnable;
+    bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
     serialPrintEnable = false;
+    servoDriver.setSerialPrintEnable(false);
     servoDriver.setServoAngle(r_channels[constrain(r_num, 0, 5)], constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     serialPrintEnable = serialPrintEnable_temp;
+    servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
     if (serialPrintEnable) {
         Serial.print("setAngle: r_num = ");
         Serial.print(r_num);
@@ -159,9 +162,12 @@ RobotArmControl& RobotArmControl::setAllAngle(uint8_t r0_angle, uint8_t r1_angle
 
 RobotArmControl& RobotArmControl::setAnglePulse(uint8_t r_num, uint16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
+    bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
     serialPrintEnable = false;
+    servoDriver.setSerialPrintEnable(false);
     servoDriver.setServoAnglePulse(r_channels[constrain(r_num, 0, 5)], constrain(pulse, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
     serialPrintEnable = serialPrintEnable_temp;
+    servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
     if (serialPrintEnable) {
         Serial.print("setAnglePulse: r_num = ");
         Serial.print(r_num);
@@ -272,9 +278,12 @@ RobotArmControl& RobotArmControl::setAllAnglePulse(uint16_t r0_pulse, uint16_t r
 
 RobotArmControl& RobotArmControl::setSpeed(uint8_t r_num, int8_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
+    bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
     serialPrintEnable = false;
+    servoDriver.setSerialPrintEnable(false);
     servoDriver.setServoSpeed(r_channels[constrain(r_num, 0, 5)], constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     serialPrintEnable = serialPrintEnable_temp;
+    servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
     if (serialPrintEnable) {
         Serial.print("setSpeed: r_num = ");
         Serial.print(r_num);
@@ -385,9 +394,12 @@ RobotArmControl& RobotArmControl::setAllSpeed(int8_t r0_speed, int8_t r1_speed, 
 
 RobotArmControl& RobotArmControl::setSpeedPulse(uint8_t r_num, int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
+    bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
     serialPrintEnable = false;
+    servoDriver.setSerialPrintEnable(false);
     servoDriver.setServoSpeedPulse(r_channels[constrain(r_num, 0, 5)], constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
     serialPrintEnable = serialPrintEnable_temp;
+    servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
     if (serialPrintEnable) {
         Serial.print("setSpeedPulse: r_num = ");
         Serial.print(r_num);
