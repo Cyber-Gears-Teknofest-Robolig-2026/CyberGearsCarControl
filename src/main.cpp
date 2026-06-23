@@ -23,6 +23,7 @@
 
 #include "BTClassicInfos.hpp"
 #include "BLEInfos.hpp"
+#include "CarControlBTValues.hpp"
 
 DCMotorControl dcmotors;
 ServoDriverControl servoMotors;
@@ -49,6 +50,12 @@ class BTLowEnergyRxCallbacks : public BLECharacteristicCallbacks {
 };
 
 void onBTClassicDataReceived() {
+    String message = btClassicSerial.readStringUntil('\n');
+    if (not message.endsWith("\r")) {
+        return;
+    }
+    Serial.print("Message: ");
+    Serial.println(message);
 }
 
 void setup(void) {
