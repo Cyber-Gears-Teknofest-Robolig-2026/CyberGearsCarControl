@@ -108,7 +108,7 @@ RobotArmControl& RobotArmControl::setAngle(uint8_t r_index, uint8_t angle) {
 RobotArmControl& RobotArmControl::setR0Angle(uint8_t angle) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAngle(0, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    setAngle(R0_INDEX, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR0Angle: angle = ");
@@ -120,7 +120,7 @@ RobotArmControl& RobotArmControl::setR0Angle(uint8_t angle) {
 RobotArmControl& RobotArmControl::setR1Angle(uint8_t angle) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAngle(1, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    setAngle(R1_INDEX, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR1Angle: angle = ");
@@ -132,7 +132,7 @@ RobotArmControl& RobotArmControl::setR1Angle(uint8_t angle) {
 RobotArmControl& RobotArmControl::setR2Angle(uint8_t angle) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAngle(2, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    setAngle(R2_INDEX, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR2Angle: angle = ");
@@ -144,7 +144,7 @@ RobotArmControl& RobotArmControl::setR2Angle(uint8_t angle) {
 RobotArmControl& RobotArmControl::setR3Angle(uint8_t angle) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAngle(3, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    setAngle(R3_INDEX, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR3Angle: angle = ");
@@ -156,7 +156,7 @@ RobotArmControl& RobotArmControl::setR3Angle(uint8_t angle) {
 RobotArmControl& RobotArmControl::setR4Angle(uint8_t angle) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAngle(4, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    setAngle(R4_INDEX, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR4Angle: angle = ");
@@ -168,7 +168,7 @@ RobotArmControl& RobotArmControl::setR4Angle(uint8_t angle) {
 RobotArmControl& RobotArmControl::setR5Angle(uint8_t angle) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAngle(5, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    setAngle(R5_INDEX, constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR5Angle: angle = ");

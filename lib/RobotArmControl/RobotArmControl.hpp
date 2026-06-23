@@ -15,7 +15,7 @@ using namespace RobotArmDefaultValues;
 class RobotArmControl {
 
     public:
-        enum class RobotArmIndex : uint8_t {
+        enum RobotArmIndex : uint8_t {
             R0_INDEX = 0,
             R1_INDEX = 1,
             R2_INDEX = 2,
