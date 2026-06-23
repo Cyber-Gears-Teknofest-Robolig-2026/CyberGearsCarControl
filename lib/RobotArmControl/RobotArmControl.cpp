@@ -42,18 +42,18 @@ RobotArmControl::RobotArmControl(
     r4_default_value(r4_default_value),
     r5_default_value(r5_default_value)
 {
-    r_channels[0] = r0_channel;
-    r_channels[1] = r1_channel;
-    r_channels[2] = r2_channel;
-    r_channels[3] = r3_channel;
-    r_channels[4] = r4_channel;
-    r_channels[5] = r5_channel;
-    is360Servos[0] = r0_is360servo;
-    is360Servos[1] = r1_is360servo;
-    is360Servos[2] = r2_is360servo;
-    is360Servos[3] = r3_is360servo;
-    is360Servos[4] = r4_is360servo;
-    is360Servos[5] = r5_is360servo;
+    r_channels[R0_INDEX] = r0_channel;
+    r_channels[R1_INDEX] = r1_channel;
+    r_channels[R2_INDEX] = r2_channel;
+    r_channels[R3_INDEX] = r3_channel;
+    r_channels[R4_INDEX] = r4_channel;
+    r_channels[R5_INDEX] = r5_channel;
+    is360Servos[R0_INDEX] = r0_is360servo;
+    is360Servos[R1_INDEX] = r1_is360servo;
+    is360Servos[R2_INDEX] = r2_is360servo;
+    is360Servos[R3_INDEX] = r3_is360servo;
+    is360Servos[R4_INDEX] = r4_is360servo;
+    is360Servos[R5_INDEX] = r5_is360servo;
 }
 
 RobotArmControl& RobotArmControl::reset(void) {

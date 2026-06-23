@@ -2,6 +2,7 @@
 #define __ZIPLINE_MECHANISM_CONTROL_HPP__
 
 #include <cstdint>
+#include <unordered_map>
 
 #include "ServoDriverControl.hpp"
 #include "ZiplineMechanismChannelInfos.hpp"
@@ -13,6 +14,10 @@ using namespace ZiplineMechanismDefaultAngles;
 class ZiplineMechanismControl {
     
     public:
+        enum MechanismIndex {
+            FRONT_INDEX = 0,
+            BACK_INDEX = 1
+        };
         ZiplineMechanismControl(
             ServoDriverControl &servoDriver,
             uint8_t front_channel = FRONT_CHANNEL,
@@ -22,14 +27,11 @@ class ZiplineMechanismControl {
             int16_t front_vertical_default_angle = FRONT_VERTICAL_DEFAULT_ANGLE,
             int16_t back_vertical_default_angle = BACK_VERTICAL_DEFAULT_ANGLE
         );
-        ZiplineMechanismControl& setAngle(MechanismNum mechanism_num, uint8_t angle);
+        ZiplineMechanismControl& setAngle(MechanismIndex mechanism_num, uint8_t angle);
+        ZiplineMechanismControl& setAngle(uint8_t mechanism_num, uint8_t angle);
         ZiplineMechanismControl& setFrontAngle(uint8_t angle);
         ZiplineMechanismControl& setBackAngle(uint8_t angle);
         ZiplineMechanismControl& setAllAngle(uint8_t front_angle, uint8_t back_angle);
-        enum MechanismNum {
-            FRONT = 0,
-            BACK = 1
-        };
     
     private:
         ServoDriverControl &servoDriver;
@@ -39,6 +41,7 @@ class ZiplineMechanismControl {
         int16_t back_horizontal_default_angle;
         int16_t front_vertical_default_angle;
         int16_t back_vertical_default_angle;
+        std::unordered_map<uint8_t, uint8_t> zipline_mechanism_channels;
 };
 
 #endif
