@@ -85,13 +85,13 @@ class RobotArmControl {
         uint8_t r3_channel;
         uint8_t r4_channel;
         uint8_t r5_channel;
-        uint8_t r_channels[6];
         bool r0_is360servo;
         bool r1_is360servo;
         bool r2_is360servo;
         bool r3_is360servo;
         bool r4_is360servo;
         bool r5_is360servo;
+        uint8_t r_channels[6];
         bool is360Servos[6];
 };
 
