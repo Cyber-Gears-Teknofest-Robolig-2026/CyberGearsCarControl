@@ -28,7 +28,8 @@ class RobotArmControl {
             bool r4_is360servo = R4_IS_360_SERVO,
             bool r5_is360servo = R5_IS_360_SERVO
         );
-        RobotArmControl& setPulse(uint8_t r_num, uint16_t pulse);
+        RobotArmControl& setValue(uint8_t r_num, uint16_t pulse);
+        /*RobotArmControl& setPulse(uint8_t r_num, uint16_t pulse);
         RobotArmControl& setR0Pulse(uint16_t pulse);
         RobotArmControl& setR1Pulse(uint16_t pulse);
         RobotArmControl& setR2Pulse(uint16_t pulse);
@@ -42,9 +43,9 @@ class RobotArmControl {
             uint16_t r3_pulse,
             uint16_t r4_pulse,
             uint16_t r5_pulse
-        );
-        RobotArmControl& setValue(uint8_t r_num, uint16_t value);
-        /*RobotArmControl& setR0Angle(uint8_t angle);
+        );*/
+        /*RobotArmControl& setValue(uint8_t r_num, uint16_t value);
+        RobotArmControl& setR0Angle(uint8_t angle);
         RobotArmControl& setR1Angle(uint8_t angle);
         RobotArmControl& setR2Angle(uint8_t angle);
         RobotArmControl& setR3Angle(uint8_t angle);
@@ -74,6 +75,7 @@ class RobotArmControl {
         bool r3_is360servo;
         bool r4_is360servo;
         bool r5_is360servo;
+        bool is360Servos[6];
 };
 
 #endif

@@ -36,9 +36,25 @@ RobotArmControl::RobotArmControl(
     r_channels[3] = r3_channel;
     r_channels[4] = r4_channel;
     r_channels[5] = r5_channel;
+    is360Servos[0] = r0_is360servo;
+    is360Servos[1] = r1_is360servo;
+    is360Servos[2] = r2_is360servo;
+    is360Servos[3] = r3_is360servo;
+    is360Servos[4] = r4_is360servo;
+    is360Servos[5] = r5_is360servo;
 }
 
-RobotArmControl& RobotArmControl::setPulse(uint8_t r_num, uint16_t pulse) {
+RobotArmControl& RobotArmControl::setValue(uint8_t r_num, uint16_t value) {
+    if (not is360Servos[constrain(r_num, 0, 5)]) {
+        servoDriver.setServoAngle(r_channels[constrain(r_num, 0, 5)], constrain(value, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    }
+    else {
+        servoDriver.setServoSpeed(r_channels[constrain(r_num, 0, 5)], constrain(value, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+    }
+    return *this;
+}
+
+/*RobotArmControl& RobotArmControl::setPulse(uint8_t r_num, uint16_t pulse) {
     servoDriver.setServoAnglePulse(r_channels[constrain(r_num, 0, 5)], constrain(pulse, 500, 2500));
     return *this;
 }
@@ -85,7 +101,7 @@ RobotArmControl& RobotArmControl::setAllPulse(uint16_t r0_pulse, uint16_t r1_pul
 
 RobotArmControl& RobotArmControl::setValue(uint8_t r_num, uint16_t value) {
     return *this;
-}
+}*/
 
 /////////////////////////////////////////////////////////////////////
 

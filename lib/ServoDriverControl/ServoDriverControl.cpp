@@ -54,7 +54,7 @@ ServoDriverControl& ServoDriverControl::setServoAnglePulse(uint8_t channel, uint
 ServoDriverControl& ServoDriverControl::setServoSpeed(uint8_t channel, int8_t speed) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    servoMotorDriver.writeMicroseconds(constrain(channel, 0, 15), map(constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED), SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
+    servoMotorDriver.writeMicroseconds(constrain(channel, 0, 15), map(constrain(speed, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED), SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setServoSpeed: channel = ");
@@ -68,7 +68,7 @@ ServoDriverControl& ServoDriverControl::setServoSpeed(uint8_t channel, int8_t sp
 ServoDriverControl& ServoDriverControl::setServoSpeedPulse(uint8_t channel, int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    servoMotorDriver.writeMicroseconds(constrain(channel, 0, 15), constrain(pulse, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
+    servoMotorDriver.writeMicroseconds(constrain(channel, 0, 15), map(constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE), SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setServoSpeedPulse: channel = ");
