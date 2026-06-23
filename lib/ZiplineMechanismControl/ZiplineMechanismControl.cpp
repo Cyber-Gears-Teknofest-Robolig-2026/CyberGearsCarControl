@@ -33,13 +33,13 @@ ZiplineMechanismControl& ZiplineMechanismControl::resetVertical() {
     return *this;
 }
 
-ZiplineMechanismControl& ZiplineMechanismControl::setAngle(MechanismIndex mechanism_num, uint8_t angle) {
-    servoDriver.setServoAngle(zipline_mechanism_channels[static_cast<uint8_t>(mechanism_num)], constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+ZiplineMechanismControl& ZiplineMechanismControl::setAngle(MechanismIndex mechanism_index, uint8_t angle) {
+    servoDriver.setServoAngle(zipline_mechanism_channels[static_cast<uint8_t>(mechanism_index)], constrain(angle, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     return *this;
 }
 
-ZiplineMechanismControl& ZiplineMechanismControl::setAngle(uint8_t mechanism_num, uint8_t angle) {
-    setAngle(static_cast<MechanismIndex>(mechanism_num), angle);
+ZiplineMechanismControl& ZiplineMechanismControl::setAngle(uint8_t mechanism_index, uint8_t angle) {
+    setAngle(static_cast<MechanismIndex>(mechanism_index), angle);
     return *this;
 }
 
@@ -56,5 +56,31 @@ ZiplineMechanismControl& ZiplineMechanismControl::setBackAngle(uint8_t angle) {
 ZiplineMechanismControl& ZiplineMechanismControl::setAllAngle(uint8_t front_angle, uint8_t back_angle) {
     setFrontAngle(front_angle);
     setBackAngle(back_angle);
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::setAnglePulse(MechanismIndex mechanism_index, uint16_t pulse) {
+    servoDriver.setServoAnglePulse(zipline_mechanism_channels[static_cast<uint8_t>(mechanism_index)], constrain(pulse, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::setAnglePulse(uint8_t mechanism_index, uint16_t pulse) {
+    setAnglePulse(static_cast<MechanismIndex>(mechanism_index), pulse);
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::setFrontAnglePulse(uint16_t pulse) {
+    setAnglePulse(FRONT_INDEX, pulse);
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::setBackAnglePulse(uint16_t pulse) {
+    setAnglePulse(BACK_INDEX, pulse);
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::setAllAnglePulse(uint16_t front_pulse, uint16_t back_pulse) {
+    setFrontAnglePulse(front_pulse);
+    setBackAnglePulse(back_pulse);
     return *this;
 }

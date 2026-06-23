@@ -29,11 +29,16 @@ class ZiplineMechanismControl {
         );
         ZiplineMechanismControl& resetHorizontal();
         ZiplineMechanismControl& resetVertical();
-        ZiplineMechanismControl& setAngle(MechanismIndex mechanism_num, uint8_t angle);
-        ZiplineMechanismControl& setAngle(uint8_t mechanism_num, uint8_t angle);
+        ZiplineMechanismControl& setAngle(MechanismIndex mechanism_index, uint8_t angle);
+        ZiplineMechanismControl& setAngle(uint8_t mechanism_index, uint8_t angle);
         ZiplineMechanismControl& setFrontAngle(uint8_t angle);
         ZiplineMechanismControl& setBackAngle(uint8_t angle);
         ZiplineMechanismControl& setAllAngle(uint8_t front_angle, uint8_t back_angle);
+        ZiplineMechanismControl& setAnglePulse(MechanismIndex mechanism_index, uint16_t pulse);
+        ZiplineMechanismControl& setAnglePulse(uint8_t mechanism_index, uint16_t pulse);
+        ZiplineMechanismControl& setFrontAnglePulse(uint16_t pulse);
+        ZiplineMechanismControl& setBackAnglePulse(uint16_t pulse);
+        ZiplineMechanismControl& setAllAnglePulse(uint16_t front_pulse, uint16_t back_pulse);
     
     private:
         ServoDriverControl &servoDriver;
