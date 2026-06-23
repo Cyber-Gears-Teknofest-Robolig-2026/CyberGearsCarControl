@@ -13,9 +13,14 @@
 #include "RobotArmDefaultValues.hpp"
 #include "RobotArmControl.hpp"
 
+#include "ZiplineMechanismChannelInfos.hpp"
+#include "ZiplineMechanismDefaultAngles.hpp"
+#include "ZiplineMechanismControl.hpp"
+
 DCMotorControl dcmotors;
 ServoDriverControl servoMotors;
 RobotArmControl robotArm(servoMotors);
+ZiplineMechanismControl ziplineMechanism(servoMotors);
 
 void setup(void) {
     Serial.begin(115200);

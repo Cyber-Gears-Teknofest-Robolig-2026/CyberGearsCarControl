@@ -27,6 +27,8 @@ class ZiplineMechanismControl {
             int16_t front_vertical_default_angle = FRONT_VERTICAL_DEFAULT_ANGLE,
             int16_t back_vertical_default_angle = BACK_VERTICAL_DEFAULT_ANGLE
         );
+        ZiplineMechanismControl& resetHorizontal();
+        ZiplineMechanismControl& resetVertical();
         ZiplineMechanismControl& setAngle(MechanismIndex mechanism_num, uint8_t angle);
         ZiplineMechanismControl& setAngle(uint8_t mechanism_num, uint8_t angle);
         ZiplineMechanismControl& setFrontAngle(uint8_t angle);
