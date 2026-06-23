@@ -229,7 +229,7 @@ RobotArmControl& RobotArmControl::setAnglePulse(uint8_t r_index, uint16_t pulse)
 RobotArmControl& RobotArmControl::setR0AnglePulse(uint16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAnglePulse(0, pulse);
+    setAnglePulse(R0_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR0AnglePulse: pulse = ");
@@ -241,7 +241,7 @@ RobotArmControl& RobotArmControl::setR0AnglePulse(uint16_t pulse) {
 RobotArmControl& RobotArmControl::setR1AnglePulse(uint16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAnglePulse(1, pulse);
+    setAnglePulse(R1_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR1AnglePulse: pulse = ");
@@ -253,7 +253,7 @@ RobotArmControl& RobotArmControl::setR1AnglePulse(uint16_t pulse) {
 RobotArmControl& RobotArmControl::setR2AnglePulse(uint16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAnglePulse(2, pulse);
+    setAnglePulse(R2_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR2AnglePulse: pulse = ");
@@ -265,7 +265,7 @@ RobotArmControl& RobotArmControl::setR2AnglePulse(uint16_t pulse) {
 RobotArmControl& RobotArmControl::setR3AnglePulse(uint16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAnglePulse(3, pulse);
+    setAnglePulse(R3_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR3AnglePulse: pulse = ");
@@ -277,7 +277,7 @@ RobotArmControl& RobotArmControl::setR3AnglePulse(uint16_t pulse) {
 RobotArmControl& RobotArmControl::setR4AnglePulse(uint16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAnglePulse(4, pulse);
+    setAnglePulse(R4_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR4AnglePulse: pulse = ");
@@ -289,7 +289,7 @@ RobotArmControl& RobotArmControl::setR4AnglePulse(uint16_t pulse) {
 RobotArmControl& RobotArmControl::setR5AnglePulse(uint16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAnglePulse(5, pulse);
+    setAnglePulse(R5_INDEX, pulse);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("setR5AnglePulse: pulse = ");
