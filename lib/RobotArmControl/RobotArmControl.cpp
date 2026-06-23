@@ -342,8 +342,8 @@ RobotArmControl& RobotArmControl::setSpeed(RobotArmIndex r_index, int8_t speed) 
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setSpeed(uint8_t r_num, int8_t speed) {
-    setSpeed(static_cast<RobotArmIndex>(r_num), speed);
+RobotArmControl& RobotArmControl::setSpeed(uint8_t r_index, int8_t speed) {
+    setSpeed(static_cast<RobotArmIndex>(r_index), speed);
     return *this;
 }
 
@@ -463,8 +463,8 @@ RobotArmControl& RobotArmControl::setSpeedPulse(RobotArmIndex r_index, int16_t p
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setSpeedPulse(uint8_t r_num, int16_t pulse) {
-    setSpeedPulse(static_cast<RobotArmIndex>(r_num), pulse);
+RobotArmControl& RobotArmControl::setSpeedPulse(uint8_t r_index, int16_t pulse) {
+    setSpeedPulse(static_cast<RobotArmIndex>(r_index), pulse);
     return *this;
 }
 
@@ -586,8 +586,8 @@ RobotArmControl& RobotArmControl::setValue(RobotArmIndex r_index, int16_t value)
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setValue(uint8_t r_num, int16_t value) {
-    setValue(static_cast<RobotArmIndex>(r_num), value);
+RobotArmControl& RobotArmControl::setValue(uint8_t r_index, int16_t value) {
+    setValue(static_cast<RobotArmIndex>(r_index), value);
     return *this;
 }
 

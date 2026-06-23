@@ -64,7 +64,7 @@ class RobotArmControl {
         RobotArmControl& setR5AnglePulse(uint16_t pulse);
         RobotArmControl& setAllAnglePulse(uint16_t r0_pulse, uint16_t r1_pulse, uint16_t r2_pulse, uint16_t r3_pulse, uint16_t r4_pulse, uint16_t r5_pulse);
         RobotArmControl& setSpeed(RobotArmIndex r_index, int8_t speed);
-        RobotArmControl& setSpeed(uint8_t r_num, int8_t speed);
+        RobotArmControl& setSpeed(uint8_t r_index, int8_t speed);
         RobotArmControl& setR0Speed(int8_t speed);
         RobotArmControl& setR1Speed(int8_t speed);
         RobotArmControl& setR2Speed(int8_t speed);
@@ -73,7 +73,7 @@ class RobotArmControl {
         RobotArmControl& setR5Speed(int8_t speed);
         RobotArmControl& setAllSpeed(int8_t r0_speed, int8_t r1_speed, int8_t r2_speed, int8_t r3_speed, int8_t r4_speed, int8_t r5_speed);
         RobotArmControl& setSpeedPulse(RobotArmIndex r_index, int16_t pulse);
-        RobotArmControl& setSpeedPulse(uint8_t r_num, int16_t pulse);
+        RobotArmControl& setSpeedPulse(uint8_t r_index, int16_t pulse);
         RobotArmControl& setR0SpeedPulse(int16_t pulse);
         RobotArmControl& setR1SpeedPulse(int16_t pulse);
         RobotArmControl& setR2SpeedPulse(int16_t pulse);
@@ -82,7 +82,7 @@ class RobotArmControl {
         RobotArmControl& setR5SpeedPulse(int16_t pulse);
         RobotArmControl& setAllSpeedPulse(int16_t r0_pulse, int16_t r1_pulse, int16_t r2_pulse, int16_t r3_pulse, int16_t r4_pulse, int16_t r5_pulse);
         RobotArmControl& setValue(RobotArmIndex r_index, int16_t value);
-        RobotArmControl& setValue(uint8_t r_num, int16_t value);
+        RobotArmControl& setValue(uint8_t r_index, int16_t value);
         RobotArmControl& setR0Value(int16_t value);
         RobotArmControl& setR1Value(int16_t value);
         RobotArmControl& setR2Value(int16_t value);
