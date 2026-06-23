@@ -69,6 +69,44 @@ class BTLowEnergyRxCallbacks : public BLECharacteristicCallbacks {
         int16_t leftSpeed = leftSpeedStr.toInt();
         dcmotors.moveMotors(leftSpeed, rightSpeed);
     }
+    else if (command == BT_ROBOT_ARM_R0) {
+        robotArm.setR0Value(value.toInt());
+    }
+    else if (command == BT_ROBOT_ARM_R1) {
+        robotArm.setR1Value(value.toInt());
+    }
+    else if (command == BT_ROBOT_ARM_R2) {
+        robotArm.setR2Value(value.toInt());
+    }
+    else if (command == BT_ROBOT_ARM_R3) {
+        robotArm.setR3Value(value.toInt());
+    }
+    else if (command == BT_ROBOT_ARM_R4) {
+        robotArm.setR4Value(value.toInt());
+    }
+    else if (command == BT_ROBOT_ARM_R5) {
+        robotArm.setR5Value(value.toInt());
+    }
+    else if (command == BT_ROBOTS_ARM_ALL) {
+        int firstComma  = value.indexOf(',');
+        int secondComma = value.indexOf(',', firstComma + 1);
+        int thirdComma  = value.indexOf(',', secondComma + 1);
+        int fourthComma = value.indexOf(',', thirdComma + 1);
+        int fifthComma  = value.indexOf(',', fourthComma + 1);
+        String r0ValueStr = value.substring(0, firstComma);
+        String r1ValueStr = value.substring(firstComma + 1, secondComma);
+        String r2ValueStr = value.substring(secondComma + 1, thirdComma);
+        String r3ValueStr = value.substring(thirdComma + 1, fourthComma);
+        String r4ValueStr = value.substring(fourthComma + 1, fifthComma);
+        String r5ValueStr = value.substring(fifthComma + 1);
+        int16_t r0Value = r0ValueStr.toInt();
+        int16_t r1Value = r1ValueStr.toInt();
+        int16_t r2Value = r2ValueStr.toInt();
+        int16_t r3Value = r3ValueStr.toInt();
+        int16_t r4Value = r4ValueStr.toInt();
+        int16_t r5Value = r5ValueStr.toInt();
+        robotArm.setAllValue(r0Value, r1Value, r2Value, r3Value, r4Value, r5Value);
+    }
   }
 };
 
