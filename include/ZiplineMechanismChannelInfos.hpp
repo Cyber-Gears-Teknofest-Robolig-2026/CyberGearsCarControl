@@ -4,8 +4,8 @@
 #include <cstdint>
 
 namespace ZiplineMechanismChannelInfos {
-    inline constexpr uint8_t FRONT_CHANNEL = 6;
-    inline constexpr uint8_t BACK_CHANNEL = 7;
+    inline constexpr uint8_t FRONT_CHANNEL  = 6;
+    inline constexpr uint8_t BACK_CHANNEL   = 7;
 }
 
 #endif
