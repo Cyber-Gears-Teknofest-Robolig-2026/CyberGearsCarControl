@@ -567,22 +567,27 @@ RobotArmControl& RobotArmControl::setAllSpeedPulse(int16_t r0_pulse, int16_t r1_
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setValue(uint8_t r_num, int16_t value) {
+RobotArmControl& RobotArmControl::setValue(RobotArmIndex r_index, int16_t value) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    if (not is360Servos[r_num]) {
-        setAngle(r_num, constrain(value, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
+    if (not is360Servos[static_cast<uint8_t>(r_index)]) {
+        setAngle(r_index, constrain(value, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE));
     }
     else {
-        setSpeed(r_num, constrain(value, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
+        setSpeed(r_index, constrain(value, SERVO_MAX_LEFT_SPEED, SERVO_MAX_RIGHT_SPEED));
     }
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
-        Serial.print("setValue: r_num = ");
-        Serial.print(r_num);
+        Serial.print("setValue: r_index = ");
+        Serial.print(static_cast<uint8_t>(r_index));
         Serial.print(", value = ");
         Serial.println(value);
     }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setValue(uint8_t r_num, int16_t value) {
+    setValue(static_cast<RobotArmIndex>(r_num), value);
     return *this;
 }
 
@@ -685,22 +690,27 @@ RobotArmControl& RobotArmControl::setAllValue(int16_t r0_value, int16_t r1_value
     return *this;
 }
 
-RobotArmControl& RobotArmControl::setValuePulse(uint8_t r_num, int16_t pulse) {
+RobotArmControl& RobotArmControl::setValuePulse(RobotArmIndex r_index, int16_t pulse) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    if (not is360Servos[r_num]) {
-        setAnglePulse(r_num, constrain(pulse, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
+    if (not is360Servos[static_cast<uint8_t>(r_index)]) {
+        setAnglePulse(r_index, constrain(pulse, SERVO_MIN_ANGLE_PULSE, SERVO_MAX_ANGLE_PULSE));
     }
     else {
-        setSpeedPulse(r_num, constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
+        setSpeedPulse(r_index, constrain(pulse, SERVO_MAX_LEFT_SPEED_PULSE, SERVO_MAX_RIGHT_SPEED_PULSE));
     }
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
-        Serial.print("setValuePulse: r_num = ");
-        Serial.print(r_num);
+        Serial.print("setValuePulse: r_index = ");
+        Serial.print(static_cast<uint8_t>(r_index));
         Serial.print(", pulse = ");
         Serial.println(pulse);
     }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::setValuePulse(uint8_t r_index, int16_t pulse) {
+    setValuePulse(static_cast<RobotArmIndex>(r_index), pulse);
     return *this;
 }
 
