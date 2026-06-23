@@ -54,7 +54,15 @@ class RobotArmControl {
         RobotArmControl& setR4Angle(uint8_t angle);
         RobotArmControl& setR5Angle(uint8_t angle);
         RobotArmControl& setAllAngle(uint8_t r0_angle, uint8_t r1_angle, uint8_t r2_angle, uint8_t r3_angle, uint8_t r4_angle, uint8_t r5_angle);
-
+        RobotArmControl& setAnglePulse(uint8_t r_num, uint16_t pulse);
+        RobotArmControl& setR0AnglePulse(uint16_t pulse);
+        RobotArmControl& setR1AnglePulse(uint16_t pulse);
+        RobotArmControl& setR2AnglePulse(uint16_t pulse);
+        RobotArmControl& setR3AnglePulse(uint16_t pulse);
+        RobotArmControl& setR4AnglePulse(uint16_t pulse);
+        RobotArmControl& setR5AnglePulse(uint16_t pulse);
+        RobotArmControl& setAllAnglePulse(uint16_t r0_pulse, uint16_t r1_pulse, uint16_t r2_pulse, uint16_t r3_pulse, uint16_t r4_pulse, uint16_t r5_pulse);
+        
         /*RobotArmControl& setPulse(uint8_t r_num, uint16_t pulse);
         RobotArmControl& setR0Pulse(uint16_t pulse);
         RobotArmControl& setR1Pulse(uint16_t pulse);
