@@ -26,17 +26,17 @@ void setup(void) {
 
 void loop(void) {
 
-    robotArm.setValue(0, -90);
+    robotArm.setValue(robotArm.R0_INDEX, -90);
     delay(1000);
-    robotArm.setValue(0, 0);
+    robotArm.setValue(robotArm.R0_INDEX, 0);
     delay(1000);
-    robotArm.setValue(0, 90);
+    robotArm.setValue(robotArm.R0_INDEX, 90);
     delay(1000);
-    robotArm.setValue(1, 0);
+    robotArm.setValue(robotArm.R1_INDEX, 0);
     delay(1000);
-    robotArm.setValue(1, 90);
+    robotArm.setValue(robotArm.R1_INDEX, 90);
     delay(1000);
-    robotArm.setValue(1, 180);
+    robotArm.setValue(robotArm.R1_INDEX, 180);
     delay(1000);
 
     /*servoMotors.setServoAngle(0, 0);
