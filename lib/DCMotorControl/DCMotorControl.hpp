@@ -37,11 +37,11 @@ class DCMotorControl {
         DCMotorControl& turnRight(int16_t left_speed, int16_t right_speed);
         DCMotorControl& turnLeft(int16_t left_speed, int16_t right_speed);
         DCMotorControl& setSerialPrintEnable(bool enable);
-        uint16_t RIGHT_PWM_MIN = 0;
-        uint16_t LEFT_PWM_MIN = 0;
-        uint16_t RIGHT_PWM_MAX;
-        uint16_t LEFT_PWM_MAX;
-        bool serialPrintEnable = true;
+        uint16_t getRightPwmMin(void) const;
+        uint16_t getLeftPwmMin(void) const;
+        uint16_t getRightPwmMax(void) const;
+        uint16_t getLeftPwmMax(void) const;
+        bool getSerialPrintEnable(void) const;
     
     private:
         uint8_t right_motor_pwm_pin;
@@ -56,6 +56,11 @@ class DCMotorControl {
         uint8_t left_motor_pwm_ch;
         uint16_t left_motor_pwm_freq;
         uint8_t left_motor_pwm_res;
+        uint16_t RIGHT_PWM_MIN = 0;
+        uint16_t LEFT_PWM_MIN = 0;
+        uint16_t RIGHT_PWM_MAX;
+        uint16_t LEFT_PWM_MAX;
+        bool serialPrintEnable = true;
 };
 
 #endif

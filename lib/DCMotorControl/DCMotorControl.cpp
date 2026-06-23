@@ -190,3 +190,23 @@ DCMotorControl& DCMotorControl::setSerialPrintEnable(bool enable) {
     this->serialPrintEnable = enable;
     return *this;
 }
+
+uint16_t DCMotorControl::getRightPwmMin(void) const {
+    return RIGHT_PWM_MIN;
+}
+
+uint16_t DCMotorControl::getLeftPwmMin(void) const {
+    return LEFT_PWM_MIN;
+}
+
+uint16_t DCMotorControl::getRightPwmMax(void) const {
+    return RIGHT_PWM_MAX;
+}
+
+uint16_t DCMotorControl::getLeftPwmMax(void) const {
+    return LEFT_PWM_MAX;
+}
+
+bool DCMotorControl::getSerialPrintEnable(void) const {
+    return serialPrintEnable;
+}

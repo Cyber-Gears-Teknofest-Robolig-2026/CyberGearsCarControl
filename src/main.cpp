@@ -31,7 +31,6 @@ void loop(void) {
     delay(1000);
     servoMotors.setServoAngle(0, 180);
     delay(1000);
-
     servoMotors.setServoSpeed(0, -90);
     delay(1000);
     servoMotors.setServoSpeed(0, 0);
@@ -39,13 +38,13 @@ void loop(void) {
     servoMotors.setServoSpeed(0, 90);
     delay(1000);
 
-    /*dcmotors.moveForward(dcmotors.LEFT_PWM_MAX, dcmotors.RIGHT_PWM_MAX);
+    /*dcmotors.moveForward(dcmotors.getLeftPwmMax(), dcmotors.getRightPwmMax());
     delay(1000);
-    dcmotors.moveBackward(dcmotors.LEFT_PWM_MAX, dcmotors.RIGHT_PWM_MAX);
+    dcmotors.moveBackward(dcmotors.getLeftPwmMax(), dcmotors.getRightPwmMax());
     delay(1000);
-    dcmotors.turnRight(dcmotors.LEFT_PWM_MAX, dcmotors.RIGHT_PWM_MAX);
+    dcmotors.turnRight(dcmotors.getLeftPwmMax(), dcmotors.getRightPwmMax());
     delay(1000);
-    dcmotors.turnLeft(dcmotors.LEFT_PWM_MAX, dcmotors.RIGHT_PWM_MAX);
+    dcmotors.turnLeft(dcmotors.getLeftPwmMax(), dcmotors.getRightPwmMax());
     delay(1000);
     dcmotors.stopMotors();
     delay(1000);*/
