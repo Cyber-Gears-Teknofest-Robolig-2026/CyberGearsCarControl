@@ -46,15 +46,36 @@ class BTLowEnergyServerCallbacks : public BLEServerCallbacks {
 class BTLowEnergyRxCallbacks : public BLECharacteristicCallbacks {
 
   void onWrite(BLECharacteristic* characteristic) override {
+    String message = characteristic->getValue().c_str();
+    if (not message.endsWith("\r\n")) return;
+    message.trim();
+    Serial.print("BLE Message: ");
+    Serial.println(message);
+    String command = message.substring(0, message.indexOf(':'));
+    String value = message.substring(message.indexOf(':') + 1);
+    Serial.println(command);
+    Serial.println(value);
+    if (command == BT_MOTOR_RIGHT) {
+        dcmotors.moveRightMotor(value.toInt());
+    }
+    else if (command == BT_MOTOR_LEFT) {
+        dcmotors.moveLeftMotor(value.toInt());
+    }
+    else if (command == BT_MOTORS_ALL) {
+        int firstComma  = value.indexOf(',');
+        String rightSpeedStr = value.substring(0, firstComma);
+        String leftSpeedStr = value.substring(firstComma + 1);
+        int16_t rightSpeed = rightSpeedStr.toInt();
+        int16_t leftSpeed = leftSpeedStr.toInt();
+        dcmotors.moveMotors(leftSpeed, rightSpeed);
+    }
   }
 };
 
 void onBTClassicDataReceived() {
     String message = btClassicSerial.readStringUntil('\n');
-    if (not message.endsWith("\r")) {
-        return;
-    }
-    Serial.print("Message: ");
+    if (not message.endsWith("\r")) return;
+    Serial.print("BT Classic Message: ");
     Serial.println(message);
     String command = message.substring(0, message.indexOf(':'));
     String value = message.substring(message.indexOf(':') + 1);
