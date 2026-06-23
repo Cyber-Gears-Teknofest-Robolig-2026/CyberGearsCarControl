@@ -6,8 +6,10 @@
 #include <Adafruit_PWMServoDriver.h>
 
 #include "ServoDriverI2CInfos.hpp"
+#include "ServoPWMInfos.hpp"
 
 using namespace ServoDriverI2CInfos;
+using namespace ServoPWMInfos;
 
 class ServoDriverControl {
     
@@ -28,8 +30,6 @@ class ServoDriverControl {
         TwoWire &i2c;
         uint8_t i2c_addr;
         Adafruit_PWMServoDriver servoMotorDriver;
-        const uint16_t SERVO_PWM_MIN = 500;
-        const uint16_t SERVO_PWM_MAX = 2500;
 };
 
 #endif

@@ -5,6 +5,7 @@
 #include "DCMotorControl.hpp"
 
 #include "ServoDriverI2CInfos.hpp"
+#include "ServoPWMInfos.hpp"
 #include "ServoDriverControl.hpp"
 
 #include "RobotArmChannelInfos.hpp"
@@ -29,6 +30,13 @@ void loop(void) {
     servoMotors.setServoAngle(0, 90);
     delay(1000);
     servoMotors.setServoAngle(0, 180);
+    delay(1000);
+
+    servoMotors.setServoSpeed(0, -90);
+    delay(1000);
+    servoMotors.setServoSpeed(0, 0);
+    delay(1000);
+    servoMotors.setServoSpeed(0, 90);
     delay(1000);
 
     /*dcmotors.moveForward(dcmotors.LEFT_PWM_MAX, dcmotors.RIGHT_PWM_MAX);
