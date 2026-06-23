@@ -1,5 +1,5 @@
-#ifndef __DCMOTORCONTROL_HPP__
-#define __DCMOTORCONTROL_HPP__
+#ifndef __DC_MOTOR_CONTROL_HPP__
+#define __DC_MOTOR_CONTROL_HPP__
 
 #include <Arduino.h>
 #include <cstdint>

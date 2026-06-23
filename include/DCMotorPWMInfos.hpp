@@ -1,5 +1,5 @@
-#ifndef __DCMOTORPWMINFOS_HPP__
-#define __DCMOTORPWMINFOS_HPP__
+#ifndef __DC_MOTOR_PWM_INFOS_HPP__
+#define __DC_MOTOR_PWM_INFOS_HPP__
 
 #include <cstdint>
 

@@ -1,5 +1,5 @@
-#ifndef __ROBOTARMSERVOTYPEINFOS_HPP__
-#define __ROBOTARMSERVOTYPEINFOS_HPP__
+#ifndef __ROBOT_ARM_SERVO_TYPE_INFOS_HPP__
+#define __ROBOT_ARM_SERVO_TYPE_INFOS_HPP__
 
 #include <cstdint>
 

@@ -1,5 +1,5 @@
-#ifndef __SERVOPWMINFOS_HPP__
-#define __SERVOPWMINFOS_HPP__
+#ifndef __SERVO_PWM_INFOS_HPP__
+#define __SERVO_PWM_INFOS_HPP__
 
 #include <cstdint>
 

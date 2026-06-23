@@ -1,5 +1,5 @@
-#ifndef __SERVODRIVERCONTROL_HPP__
-#define __SERVODRIVERCONTROL_HPP__
+#ifndef __SERVO_DRIVER_CONTROL_HPP__
+#define __SERVO_DRIVER_CONTROL_HPP__
 
 #include <Wire.h>
 #include <cstdint>

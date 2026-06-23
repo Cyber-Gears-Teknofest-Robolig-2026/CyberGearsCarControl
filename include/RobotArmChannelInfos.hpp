@@ -1,5 +1,5 @@
-#ifndef __ROBOTARMCHANNELINFOS_HPP__
-#define __ROBOTARMCHANNELINFOS_HPP__
+#ifndef __ROBOT_ARM_CHANNEL_INFOS_HPP__
+#define __ROBOT_ARM_CHANNEL_INFOS_HPP__
 
 #include <cstdint>
 

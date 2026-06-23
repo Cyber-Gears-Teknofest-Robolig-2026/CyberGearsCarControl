@@ -1,5 +1,5 @@
-#ifndef __ROBOTARMDEFAULTVALUES_HPP__
-#define __ROBOTARMDEFAULTVALUES_HPP__
+#ifndef __ROBOT_ARM_DEFAULT_VALUES_HPP__
+#define __ROBOT_ARM_DEFAULT_VALUES_HPP__
 
 #include <cstdint>
 

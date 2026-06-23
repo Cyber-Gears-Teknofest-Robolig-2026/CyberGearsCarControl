@@ -1,5 +1,5 @@
-#ifndef __ROBOTARMCONTROL_HPP__
-#define __ROBOTARMCONTROL_HPP__
+#ifndef __ROBOT_ARM_CONTROL_HPP__
+#define __ROBOT_ARM_CONTROL_HPP__
 
 #include <cstdint>
 

@@ -1,5 +1,5 @@
-#ifndef __SERVODRIVERI2CINPOS_HPP__
-#define __SERVODRIVERI2CINPOS_HPP__
+#ifndef __SERVO_DRIVER_I2C_INFOS_HPP__
+#define __SERVO_DRIVER_I2C_INFOS_HPP__
 
 #include <Wire.h>
 #include <cstdint>
