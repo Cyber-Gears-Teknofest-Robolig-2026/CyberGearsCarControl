@@ -27,11 +27,25 @@ void setup(void) {
     dcmotors.begin().setSerialPrintEnable(true);
     servoMotors.begin().setSerialPrintEnable(true);
     robotArm.reset().setSerialPrintEnable(true);
+    ziplineMechanism.resetHorizontal().setSerialPrintEnable(true);
 }
 
 void loop(void) {
 
-    robotArm.setValue(robotArm.R0_INDEX, -90);
+    ziplineMechanism.setAngle(ziplineMechanism.FRONT_INDEX, 0);
+    delay(1000);
+    ziplineMechanism.setAngle(ziplineMechanism.FRONT_INDEX, 90);
+    delay(1000);
+    ziplineMechanism.setAngle(ziplineMechanism.FRONT_INDEX, 180);
+    delay(1000);
+    ziplineMechanism.setAngle(ziplineMechanism.BACK_INDEX, 0);
+    delay(1000);
+    ziplineMechanism.setAngle(ziplineMechanism.BACK_INDEX, 90);
+    delay(1000);
+    ziplineMechanism.setAngle(ziplineMechanism.BACK_INDEX, 180);
+    delay(1000);
+
+    /*robotArm.setValue(robotArm.R0_INDEX, -90);
     delay(1000);
     robotArm.setValue(robotArm.R0_INDEX, 0);
     delay(1000);
@@ -42,7 +56,7 @@ void loop(void) {
     robotArm.setValue(robotArm.R1_INDEX, 90);
     delay(1000);
     robotArm.setValue(robotArm.R1_INDEX, 180);
-    delay(1000);
+    delay(1000);*/
 
     /*servoMotors.setServoAngle(0, 0);
     delay(1000);

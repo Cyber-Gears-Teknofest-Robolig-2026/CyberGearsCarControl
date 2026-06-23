@@ -39,7 +39,9 @@ class ZiplineMechanismControl {
         ZiplineMechanismControl& setFrontAnglePulse(uint16_t pulse);
         ZiplineMechanismControl& setBackAnglePulse(uint16_t pulse);
         ZiplineMechanismControl& setAllAnglePulse(uint16_t front_pulse, uint16_t back_pulse);
-    
+        ZiplineMechanismControl& setSerialPrintEnable(bool enable);
+        bool getSerialPrintEnable(void) const;
+
     private:
         ServoDriverControl &servoDriver;
         uint8_t front_channel;
@@ -49,6 +51,7 @@ class ZiplineMechanismControl {
         int16_t front_vertical_default_angle;
         int16_t back_vertical_default_angle;
         uint8_t zipline_mechanism_channels[2];
+        bool serialPrintEnable = true;
 };
 
 #endif
