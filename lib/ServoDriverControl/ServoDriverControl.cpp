@@ -16,11 +16,23 @@ ServoDriverControl& ServoDriverControl::begin() {
     servoMotorDriver.begin();
     servoMotorDriver.setPWMFreq(50);
     for (uint8_t i=0; i<16; i++) {
-        servoMotorDriver.writeMicroseconds(i, 0);
+        releaseServo(i);
     }
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.println("ServoDriverControl begin");
+    }
+    return *this;
+}
+
+ServoDriverControl& ServoDriverControl::releaseServo(uint8_t channel) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    servoMotorDriver.writeMicroseconds(channel, 0);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("releaseServo: channel = ");
+        Serial.println(channel);
     }
     return *this;
 }

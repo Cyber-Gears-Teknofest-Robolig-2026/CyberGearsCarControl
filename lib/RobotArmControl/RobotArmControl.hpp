@@ -44,7 +44,24 @@ class RobotArmControl {
             int16_t r4_default_value = R4_DEFAULT_VALUE,
             int16_t r5_default_value = R5_DEFAULT_VALUE
         );
-        RobotArmControl& reset();
+        RobotArmControl& release(RobotArmIndex r_index);
+        RobotArmControl& release(uint8_t r_index);
+        RobotArmControl& releaseR0(void);
+        RobotArmControl& releaseR1(void);
+        RobotArmControl& releaseR2(void);
+        RobotArmControl& releaseR3(void);
+        RobotArmControl& releaseR4(void);
+        RobotArmControl& releaseR5(void);
+        RobotArmControl& releaseAll(void);
+        RobotArmControl& reset(RobotArmIndex r_index);
+        RobotArmControl& reset(uint8_t r_index);
+        RobotArmControl& resetR0(void);
+        RobotArmControl& resetR1(void);
+        RobotArmControl& resetR2(void);
+        RobotArmControl& resetR3(void);
+        RobotArmControl& resetR4(void);
+        RobotArmControl& resetR5(void);
+        RobotArmControl& resetAll(void);
         RobotArmControl& setAngle(RobotArmIndex r_index, uint8_t angle);
         RobotArmControl& setAngle(uint8_t r_index, uint8_t angle);
         RobotArmControl& setR0Angle(uint8_t angle);
@@ -124,6 +141,7 @@ class RobotArmControl {
         int16_t r5_default_value;
         uint8_t r_channels[6];
         bool is360Servos[6];
+        int16_t r_default_values[6];
         bool serialPrintEnable = true;
 };
 

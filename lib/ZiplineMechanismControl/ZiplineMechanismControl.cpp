@@ -19,13 +19,137 @@ ZiplineMechanismControl::ZiplineMechanismControl(
 {
     zipline_mechanism_channels[FRONT_INDEX] = front_channel;
     zipline_mechanism_channels[BACK_INDEX] = back_channel;
+    horizontal_default_angles[FRONT_INDEX] = front_horizontal_default_angle;
+    horizontal_default_angles[BACK_INDEX] = back_horizontal_default_angle;
+    vertical_default_angles[FRONT_INDEX] = front_vertical_default_angle;
+    vertical_default_angles[BACK_INDEX] = back_vertical_default_angle;
 }
 
-ZiplineMechanismControl& ZiplineMechanismControl::resetHorizontal() {
+ZiplineMechanismControl& ZiplineMechanismControl::release(MechanismIndex mechanism_index) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    bool serialPrintEnable_servoDriver_temp = servoDriver.getSerialPrintEnable();
+    serialPrintEnable = false;
+    servoDriver.setSerialPrintEnable(false);
+    servoDriver.releaseServo(zipline_mechanism_channels[static_cast<uint8_t>(mechanism_index)]);
+    serialPrintEnable = serialPrintEnable_temp;
+    servoDriver.setSerialPrintEnable(serialPrintEnable_servoDriver_temp);
+    if (serialPrintEnable) {
+        Serial.print("release: mechanism_index = ");
+        Serial.print(static_cast<uint8_t>(mechanism_index));
+        Serial.println();
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::release(uint8_t mechanism_index) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAngle(FRONT_INDEX, front_horizontal_default_angle);
-    setAngle(BACK_INDEX, back_horizontal_default_angle);
+    release(static_cast<MechanismIndex>(mechanism_index));
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("release: mechanism_index = ");
+        Serial.print(mechanism_index);
+        Serial.println();
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::releaseFront(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    release(FRONT_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("releaseFront: front = ");
+        Serial.println();
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::releaseBack(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    release(BACK_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("releaseBack: back = ");
+        Serial.println();
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::releaseAll(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    release(FRONT_INDEX);
+    release(BACK_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("releaseAll: front = ");
+        Serial.print(front_horizontal_default_angle);
+        Serial.print(", back = ");
+        Serial.println(back_horizontal_default_angle);
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::resetHorizontal(MechanismIndex mechanism_index) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    setAngle(mechanism_index, horizontal_default_angles[static_cast<uint8_t>(mechanism_index)]);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetHorizontal: mechanism_index = ");
+        Serial.print(static_cast<uint8_t>(mechanism_index));
+        Serial.print(", angle = ");
+        Serial.println(horizontal_default_angles[static_cast<uint8_t>(mechanism_index)]);
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::resetHorizontal(uint8_t mechanism_index) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    resetHorizontal(static_cast<MechanismIndex>(mechanism_index));
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetHorizontal: mechanism_index = ");
+        Serial.print(mechanism_index);
+        Serial.print(", angle = ");
+        Serial.println(horizontal_default_angles[mechanism_index]);
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::resetHorizontalFront(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    resetHorizontal(FRONT_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetHorizontalFront: front = ");
+        Serial.println(front_horizontal_default_angle);
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::resetHorizontalBack(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    resetHorizontal(BACK_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetHorizontalBack: back = ");
+        Serial.println(back_horizontal_default_angle);
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::resetHorizontalAll(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    resetHorizontalFront();
+    resetHorizontalBack();
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("resetHorizontal: front = ");
@@ -36,11 +160,63 @@ ZiplineMechanismControl& ZiplineMechanismControl::resetHorizontal() {
     return *this;
 }
 
-ZiplineMechanismControl& ZiplineMechanismControl::resetVertical() {
+ZiplineMechanismControl& ZiplineMechanismControl::resetVertical(MechanismIndex mechanism_index) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAngle(FRONT_INDEX, front_vertical_default_angle);
-    setAngle(BACK_INDEX, back_vertical_default_angle);
+    resetVertical(static_cast<uint8_t>(mechanism_index));
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetVertical: mechanism_index = ");
+        Serial.print(static_cast<uint8_t>(mechanism_index));
+        Serial.print(", angle = ");
+        Serial.println(vertical_default_angles[static_cast<uint8_t>(mechanism_index)]);
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::resetVertical(uint8_t mechanism_index) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    resetVertical(static_cast<MechanismIndex>(mechanism_index));
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetVertical: mechanism_index = ");
+        Serial.print(mechanism_index);
+        Serial.print(", angle = ");
+        Serial.println(vertical_default_angles[mechanism_index]);
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::resetVerticalFront(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    resetVertical(FRONT_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetVerticalFront: front = ");
+        Serial.println(front_vertical_default_angle);
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::resetVerticalBack(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    resetVertical(BACK_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetVerticalBack: back = ");
+        Serial.println(back_vertical_default_angle);
+    }
+    return *this;
+}
+
+ZiplineMechanismControl& ZiplineMechanismControl::resetVerticalAll(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    resetVerticalFront();
+    resetVerticalBack();
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("resetVertical: front = ");

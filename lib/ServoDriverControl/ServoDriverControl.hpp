@@ -19,6 +19,7 @@ class ServoDriverControl {
             TwoWire &i2c = I2C
         );
         ServoDriverControl& begin();
+        ServoDriverControl& releaseServo(uint8_t channel);
         ServoDriverControl& setServoAngle(uint8_t channel, uint8_t angle);
         ServoDriverControl& setServoAnglePulse(uint8_t channel, uint16_t pulse);
         ServoDriverControl& setServoSpeed(uint8_t channel, int8_t speed);

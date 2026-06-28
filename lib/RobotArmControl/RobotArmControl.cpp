@@ -54,17 +54,227 @@ RobotArmControl::RobotArmControl(
     is360Servos[R3_INDEX] = r3_is360servo;
     is360Servos[R4_INDEX] = r4_is360servo;
     is360Servos[R5_INDEX] = r5_is360servo;
+    r_default_values[R0_INDEX] = r0_default_value;
+    r_default_values[R1_INDEX] = r1_default_value;
+    r_default_values[R2_INDEX] = r2_default_value;
+    r_default_values[R3_INDEX] = r3_default_value;
+    r_default_values[R4_INDEX] = r4_default_value;
+    r_default_values[R5_INDEX] = r5_default_value;
 }
 
-RobotArmControl& RobotArmControl::reset(void) {
+RobotArmControl& RobotArmControl::release(RobotArmIndex r_index) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    servoDriver.releaseServo(r_channels[static_cast<uint8_t>(r_index)]);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("release: r_index = ");
+        Serial.println(static_cast<uint8_t>(r_index));
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::release(uint8_t r_index) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    release(static_cast<RobotArmIndex>(r_index));
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("release: r_index = ");
+        Serial.println(r_index);
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::releaseR0(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    release(R0_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.println("releaseR0");
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::releaseR1(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    release(R1_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.println("releaseR1");
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::releaseR2(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    release(R2_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.println("releaseR2");
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::releaseR3(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    release(R3_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.println("releaseR3");
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::releaseR4(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    release(R4_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.println("releaseR4");
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::releaseR5(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    release(R5_INDEX);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.println("releaseR5");
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::releaseAll(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    releaseR0();
+    releaseR1();
+    releaseR2();
+    releaseR3();
+    releaseR4();
+    releaseR5();
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.println("releaseAll");
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::reset(RobotArmIndex r_index) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    setValue(r_index, r_default_values[r_index]);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("reset: r_index = ");
+        Serial.print(static_cast<uint8_t>(r_index));
+        Serial.print(", r_value = ");
+        Serial.println(r_default_values[r_index]);
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::reset(uint8_t r_index) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    reset(static_cast<RobotArmIndex>(r_index));
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("reset: r_index = ");
+        Serial.println(r_index);
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::resetR0(void) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     setValue(R0_INDEX, r0_default_value);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetR0: r0_value = ");
+        Serial.println(r0_default_value);
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::resetR1(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setValue(R1_INDEX, r1_default_value);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetR1: r1_value = ");
+        Serial.println(r1_default_value);
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::resetR2(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setValue(R2_INDEX, r2_default_value);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetR2: r2_value = ");
+        Serial.println(r2_default_value);
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::resetR3(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setValue(R3_INDEX, r3_default_value);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetR3: r3_value = ");
+        Serial.println(r3_default_value);
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::resetR4(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setValue(R4_INDEX, r4_default_value);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetR4: r4_value = ");
+        Serial.println(r4_default_value);
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::resetR5(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setValue(R5_INDEX, r5_default_value);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("resetR5: r5_value = ");
+        Serial.println(r5_default_value);
+    }
+    return *this;
+}
+
+RobotArmControl& RobotArmControl::resetAll(void) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
+    resetR0();
+    resetR1();
+    resetR2();
+    resetR3();
+    resetR4();
+    resetR5();
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("reset: r0 = ");
@@ -101,7 +311,16 @@ RobotArmControl& RobotArmControl::setAngle(RobotArmIndex r_index, uint8_t angle)
 }
 
 RobotArmControl& RobotArmControl::setAngle(uint8_t r_index, uint8_t angle) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setAngle(static_cast<RobotArmIndex>(r_index), angle);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("setAngle: r_index = ");
+        Serial.print(r_index);
+        Serial.print(", angle = ");
+        Serial.println(angle);
+    }
     return *this;
 }
 
@@ -222,7 +441,16 @@ RobotArmControl& RobotArmControl::setAnglePulse(RobotArmIndex r_index, uint16_t 
 }
 
 RobotArmControl& RobotArmControl::setAnglePulse(uint8_t r_index, uint16_t pulse) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setAnglePulse(static_cast<RobotArmIndex>(r_index), pulse);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("setAnglePulse: r_index = ");
+        Serial.print(r_index);
+        Serial.print(", pulse = ");
+        Serial.println(pulse);
+    }
     return *this;
 }
 
@@ -343,7 +571,16 @@ RobotArmControl& RobotArmControl::setSpeed(RobotArmIndex r_index, int8_t speed) 
 }
 
 RobotArmControl& RobotArmControl::setSpeed(uint8_t r_index, int8_t speed) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setSpeed(static_cast<RobotArmIndex>(r_index), speed);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("setSpeed: r_index = ");
+        Serial.print(r_index);
+        Serial.print(", speed = ");
+        Serial.println(speed);
+    }
     return *this;
 }
 
@@ -464,7 +701,16 @@ RobotArmControl& RobotArmControl::setSpeedPulse(RobotArmIndex r_index, int16_t p
 }
 
 RobotArmControl& RobotArmControl::setSpeedPulse(uint8_t r_index, int16_t pulse) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setSpeedPulse(static_cast<RobotArmIndex>(r_index), pulse);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("setSpeedPulse: r_index = ");
+        Serial.print(r_index);
+        Serial.print(", pulse = ");
+        Serial.println(pulse);
+    }
     return *this;
 }
 
@@ -587,7 +833,16 @@ RobotArmControl& RobotArmControl::setValue(RobotArmIndex r_index, int16_t value)
 }
 
 RobotArmControl& RobotArmControl::setValue(uint8_t r_index, int16_t value) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setValue(static_cast<RobotArmIndex>(r_index), value);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("setValue: r_index = ");
+        Serial.print(r_index);
+        Serial.print(", value = ");
+        Serial.println(value);
+    }
     return *this;
 }
 
@@ -710,7 +965,16 @@ RobotArmControl& RobotArmControl::setValuePulse(RobotArmIndex r_index, int16_t p
 }
 
 RobotArmControl& RobotArmControl::setValuePulse(uint8_t r_index, int16_t pulse) {
+    bool serialPrintEnable_temp = serialPrintEnable;
+    serialPrintEnable = false;
     setValuePulse(static_cast<RobotArmIndex>(r_index), pulse);
+    serialPrintEnable = serialPrintEnable_temp;
+    if (serialPrintEnable) {
+        Serial.print("setValuePulse: r_index = ");
+        Serial.print(r_index);
+        Serial.print(", pulse = ");
+        Serial.println(pulse);
+    }
     return *this;
 }
 

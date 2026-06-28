@@ -27,8 +27,21 @@ class ZiplineMechanismControl {
             int16_t front_vertical_default_angle = FRONT_VERTICAL_DEFAULT_ANGLE,
             int16_t back_vertical_default_angle = BACK_VERTICAL_DEFAULT_ANGLE
         );
-        ZiplineMechanismControl& resetHorizontal();
-        ZiplineMechanismControl& resetVertical();
+        ZiplineMechanismControl& release(MechanismIndex mechanism_index);
+        ZiplineMechanismControl& release(uint8_t mechanism_index);
+        ZiplineMechanismControl& releaseFront(void);
+        ZiplineMechanismControl& releaseBack(void);
+        ZiplineMechanismControl& releaseAll(void);
+        ZiplineMechanismControl& resetHorizontal(MechanismIndex mechanism_index);
+        ZiplineMechanismControl& resetHorizontal(uint8_t mechanism_index);
+        ZiplineMechanismControl& resetHorizontalFront(void);
+        ZiplineMechanismControl& resetHorizontalBack(void);
+        ZiplineMechanismControl& resetHorizontalAll(void);
+        ZiplineMechanismControl& resetVertical(MechanismIndex mechanism_index);
+        ZiplineMechanismControl& resetVertical(uint8_t mechanism_index);
+        ZiplineMechanismControl& resetVerticalFront(void);
+        ZiplineMechanismControl& resetVerticalBack(void);
+        ZiplineMechanismControl& resetVerticalAll(void);
         ZiplineMechanismControl& setAngle(MechanismIndex mechanism_index, uint8_t angle);
         ZiplineMechanismControl& setAngle(uint8_t mechanism_index, uint8_t angle);
         ZiplineMechanismControl& setFrontAngle(uint8_t angle);
@@ -51,6 +64,8 @@ class ZiplineMechanismControl {
         int16_t front_vertical_default_angle;
         int16_t back_vertical_default_angle;
         uint8_t zipline_mechanism_channels[2];
+        int16_t horizontal_default_angles[2];
+        int16_t vertical_default_angles[2];
         bool serialPrintEnable = true;
 };
 

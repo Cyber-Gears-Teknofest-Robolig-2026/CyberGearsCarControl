@@ -35,6 +35,19 @@ BLECharacteristic* bleRxCharacteristic;
 
 // --BT Classic--
 
+void onBTClassicConnectionCheck() {
+    if (digitalRead(BT_CLASSIC_STATE_PIN)) {
+        dcmotors.stopMotors();
+        robotArm.resetAll();
+        ziplineMechanism.resetHorizontalAll();
+    }
+    else {
+        dcmotors.stopMotors();
+        robotArm.releaseAll();
+        ziplineMechanism.releaseAll();
+    }
+}
+
 void onBTClassicDataReceived(String message) {
     Serial.print("BT Classic Message: ");
     Serial.println(message);
@@ -123,14 +136,15 @@ void BTClassicRxCallback() {
 // --BLE--
 
 class BTLowEnergyServerCallbacks : public BLEServerCallbacks {
-
   void onConnect(BLEServer* server) override {
+    dcmotors.stopMotors();
+    robotArm.resetAll();
+    ziplineMechanism.resetHorizontalAll();
   }
-
   void onDisconnect(BLEServer* server) override {
     dcmotors.stopMotors();
-    robotArm.reset();
-    ziplineMechanism.resetHorizontal();
+    robotArm.releaseAll();
+    ziplineMechanism.releaseAll();
     BLEDevice::startAdvertising();
   }
 };
@@ -230,6 +244,8 @@ void setup(void) {
 
     btClassicSerial.begin(BT_CLASSIC_SERIAL_BAUD_RATE);
     btClassicSerial.onReceive(BTClassicRxCallback);
+    pinMode(BT_CLASSIC_STATE_PIN, INPUT);
+    attachInterrupt(digitalPinToInterrupt(BT_CLASSIC_STATE_PIN), onBTClassicConnectionCheck, CHANGE);
 
     BLEDevice::init(BLE_DEVICE_NAME);
     BLEServer* bleServer = BLEDevice::createServer();
@@ -254,8 +270,8 @@ void setup(void) {
 
     dcmotors.begin().setSerialPrintEnable(true);
     servoMotors.begin().setSerialPrintEnable(true);
-    robotArm.reset().setSerialPrintEnable(true);
-    ziplineMechanism.resetHorizontal().setSerialPrintEnable(true);
+    robotArm.releaseAll().setSerialPrintEnable(true);
+    ziplineMechanism.releaseAll().setSerialPrintEnable(true);
 }
 
 void loop(void) {
