@@ -59,12 +59,12 @@ RobotArmControl::RobotArmControl(
 RobotArmControl& RobotArmControl::reset(void) {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
-    setAngle(0, r0_default_value);
-    setAngle(1, r1_default_value);
-    setAngle(2, r2_default_value);
-    setAngle(3, r3_default_value);
-    setAngle(4, r4_default_value);
-    setAngle(5, r5_default_value);
+    setValue(R0_INDEX, r0_default_value);
+    setValue(R1_INDEX, r1_default_value);
+    setValue(R2_INDEX, r2_default_value);
+    setValue(R3_INDEX, r3_default_value);
+    setValue(R4_INDEX, r4_default_value);
+    setValue(R5_INDEX, r5_default_value);
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.print("reset: r0 = ");

@@ -14,8 +14,10 @@ ServoDriverControl& ServoDriverControl::begin() {
     bool serialPrintEnable_temp = serialPrintEnable;
     serialPrintEnable = false;
     servoMotorDriver.begin();
-    servoMotorDriver.setOscillatorFrequency(27000000);
     servoMotorDriver.setPWMFreq(50);
+    for (uint8_t i=0; i<16; i++) {
+        servoMotorDriver.writeMicroseconds(i, 0);
+    }
     serialPrintEnable = serialPrintEnable_temp;
     if (serialPrintEnable) {
         Serial.println("ServoDriverControl begin");

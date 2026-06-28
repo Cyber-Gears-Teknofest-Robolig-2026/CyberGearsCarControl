@@ -128,6 +128,9 @@ class BTLowEnergyServerCallbacks : public BLEServerCallbacks {
   }
 
   void onDisconnect(BLEServer* server) override {
+    dcmotors.stopMotors();
+    robotArm.reset();
+    ziplineMechanism.resetHorizontal();
     BLEDevice::startAdvertising();
   }
 };
@@ -257,10 +260,6 @@ void setup(void) {
 
 void loop(void) {
 
-    /*if (btClassicSerial.available()) {
-        onBTClassicDataReceived();
-    }*/
-
     if (btClassicDataReady) {
         onBTClassicDataReceived(btClassicMessage);
         btClassicDataReady = false;
@@ -270,6 +269,10 @@ void loop(void) {
         onBLEDataReceived(bleMessage);
         bleDataReady = false;
     }
+
+    /*if (btClassicSerial.available()) {
+        onBTClassicDataReceived();
+    }*/
 
     /*ziplineMechanism.setAngle(ziplineMechanism.FRONT_INDEX, 0);
     delay(1000);
@@ -284,13 +287,18 @@ void loop(void) {
     ziplineMechanism.setAngle(ziplineMechanism.BACK_INDEX, 180);
     delay(1000);*/
 
+    //robotArm.setValue(robotArm.R0_INDEX, 0);
+
+    /*servoMotors.setServoSpeedPulse(4, 0);
+    delay(1000);*/
+
     /*robotArm.setValue(robotArm.R0_INDEX, -90);
     delay(1000);
     robotArm.setValue(robotArm.R0_INDEX, 0);
     delay(1000);
     robotArm.setValue(robotArm.R0_INDEX, 90);
-    delay(1000);
-    robotArm.setValue(robotArm.R1_INDEX, 0);
+    delay(1000);*/
+    /*robotArm.setValue(robotArm.R1_INDEX, 0);
     delay(1000);
     robotArm.setValue(robotArm.R1_INDEX, 90);
     delay(1000);
